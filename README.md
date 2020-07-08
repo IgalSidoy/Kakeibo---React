@@ -1,3 +1,6 @@
+Project Roadmap : https://trello.com/b/uJQpVPC6/dev-kakebo-project
+beta example at : https://dev.d8yyabn9bb993.amplifyapp.com
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
