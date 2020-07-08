@@ -1,0 +1,224 @@
+.container {
+  margin: auto;
+  background-color: #ebf6fd;
+  border-radius: 5px;
+  margin-top: 0;
+}
+
+.col {
+  flex: 1;
+}
+
+@media only screen and (max-width: 480px) {
+  .container {
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 580px;
+  }
+  .cell_title {
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgb(117, 117, 117);
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    box-shadow: 0px 2px 6px rgba(128, 128, 128, 0.589);
+    font-weight: 650;
+  }
+  .col {
+    margin: 6px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+  .button:active {
+    border: 1px solid #08a112;
+    background-color: #ade9b1;
+  }
+  .col {
+    margin: 0px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+  .button:active {
+    border: 1px solid #08a112;
+    background-color: #ade9b1;
+  }
+  .remove_img {
+    flex-basis: 25px;
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: #0c7291;
+    border-radius: 5px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.5rem;
+  }
+  .remove_img img {
+    width: 30px;
+    border-radius: 360px;
+    transition-duration: 0.2s;
+    margin-top: 5px;
+    margin-bottom: 1px;
+  }
+  .remove_img img:active {
+    filter: invert(40);
+  }
+}
+@media only screen and (min-width: 480px) {
+  .container {
+    width: 100%;
+  }
+  .row {
+  }
+  .cell_title {
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgb(117, 117, 117);
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    box-shadow: 0px 2px 6px rgba(128, 128, 128, 0.589);
+    font-weight: 600;
+  }
+  .col {
+    margin: 0px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+  .button:active {
+    border: 1px solid #08a112;
+    background-color: #ade9b1;
+  }
+  .remove_img {
+    flex-basis: 25px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  .remove_img img {
+    width: 30px;
+    border-radius: 360px;
+    transition-duration: 0.2s;
+  }
+  .remove_img img:active {
+    filter: invert(40);
+  }
+}
+
+@media only screen and (min-width: 750px) {
+  .container {
+    width: 100%;
+  }
+  .row {
+    display: flex;
+  }
+  .border {
+    border: 1px solid #ebf6fd;
+    border-radius: 5px;
+    box-shadow: 2px 3px 5px #ebf6fd;
+  }
+  .col {
+    margin: 6px;
+  }
+  .cell_title {
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgb(117, 117, 117);
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.25rem;
+    box-shadow: 0px 2px 6px rgba(128, 128, 128, 0.589);
+    font-weight: 600;
+  }
+  .button:hover {
+    border: 1px solid #053a4b;
+    background-color: #0c7291;
+  }
+  .button:active {
+    border: 1px solid #0d4658;
+    background-color: #0b1c22;
+  }
+  .button label {
+    cursor: pointer;
+    font-weight: 550;
+    font-size: 1.2rem;
+  }
+}
+
+.button {
+  width: 95%;
+  min-width: 180px;
+  border: 1px solid rgb(150, 148, 148);
+  margin: auto;
+  border-radius: 5px;
+  height: 40px;
+  box-shadow: 0px 2px 4px rgba(105, 105, 105, 0.288);
+  padding-top: 10px;
+  cursor: pointer;
+  transition-duration: 0.35s;
+  scroll-margin-top: 1rem;
+  color: white;
+  background-color: #0c7291;
+  margin-bottom: 10px;
+}
+
+.button label {
+  cursor: pointer;
+  font-weight: 550;
+  font-size: 1.2rem;
+}
+.error {
+  text-align: left;
+  color: red;
+}
+.message_show {
+  border: 1px solid #a2d8a5;
+  width: 300px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  margin-top: -100px; /* Negative half of height. */
+  margin-left: -150px; /* Negative half of width. */
+  border-radius: 5px;
+  position: fixed;
+  background-color: #00779b;
+  z-index: 1;
+  transition-duration: 0.45s;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  box-shadow: 2px 4px 5px rgba(109, 109, 109, 0.377);
+  text-transform: capitalize;
+  transition-duration: 0.25s;
+
+  transition-timing-function: ease-in-out;
+}
+.message_hide {
+  border: 1px solid #b1e9b4;
+  width: 300px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  margin-top: -1000px; /* Negative half of height. */
+  margin-left: -150px; /* Negative half of width. */
+  border-radius: 5px;
+  position: fixed;
+  background-color: #00779b;
+  /* opacity: 0.5; */
+  z-index: 1;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-in;
+}
+.msg {
+  padding: 1rem;
+  border-bottom: 1px solid rgb(145, 144, 144);
+  font-size: 1.2rem;
+  margin-bottom: 80px;
+  color: white;
+}
+
+.loader {
+  margin-top: -30px;
+  margin-bottom: 5px;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.loader_small {
+  height: 50px;
+  margin-top: -25px;
+  margin-bottom: 5px;
+}

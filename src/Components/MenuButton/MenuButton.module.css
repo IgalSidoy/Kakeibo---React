@@ -1,0 +1,41 @@
+.lineContainer {
+  flex-direction: column;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+  padding: 0.45rem;
+  padding-left: 0.5rem;
+  transition-duration: 0.25s;
+  padding-bottom: 1rem;
+  padding-top: 0rem;
+  margin-left: 4px;
+  margin-bottom: 3px;
+  margin-top: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.452);
+}
+.line {
+  border-top: 2.5px solid rgba(240, 237, 237, 0.979);
+  height: 1px;
+  width: 35px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+.lineContainer:hover {
+  background-color: #036380cc;
+}
+.lineContainer:active {
+  background-color: #1784a5;
+}
+.row {
+  display: flex;
+  background-color: #00779b;
+}
+
+.col1 {
+  flex-basis: 50px;
+}
+
+.col2 {
+  flex: 2;
+}

@@ -1,0 +1,132 @@
+.avatar img {
+  width: 50px;
+  height: 50px;
+  padding-top: 2px;
+  margin-left: -10px;
+  background-color: #00779b;
+  margin: none;
+  border-radius: 50px;
+}
+
+.avatar {
+  height: 57px;
+  padding-left: 10px;
+  padding-top: 3px;
+
+  background-color: #00779b;
+}
+
+.title {
+  background-color: #00779b;
+  font-size: 1.5rem;
+  color: white;
+  padding-top: 10px;
+  height: 50px;
+  text-transform: capitalize;
+}
+.cursor_pointer {
+  cursor: pointer;
+}
+.border_right {
+  border-right: 1px solid rgba(235, 234, 234, 0.315);
+}
+.border_left {
+  border-left: 1px solid rgba(235, 234, 234, 0.315);
+}
+
+@media only screen and (min-width: 480px) {
+  .avatar_name {
+    cursor: pointer;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.7rem;
+    padding-top: 4px;
+    width: 50px;
+    height: 35px;
+  }
+  .avatar_name label {
+    margin-left: 2px;
+    cursor: pointer;
+  }
+  .avatar_container {
+    margin-left: 0px;
+    margin-right: auto;
+    padding-bottom: 5px;
+    border: 2px solid white;
+    border-radius: 100px;
+  }
+  .avatar_message {
+    position: fixed;
+    background-color: #00779b;
+    border-radius: 10px;
+    border: 1px solid #cccbcb88;
+    margin-top: -50px;
+    margin-left: -365px;
+    font-size: 1.2rem;
+    padding-left: 0.5rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    text-align: left;
+    box-shadow: 1px 3px 5px gray;
+  }
+  .avatar_message label {
+    text-transform: none;
+    display: block;
+  }
+
+  .triangle {
+    width: 0;
+    height: 0;
+    border-top: 12.5px solid transparent;
+    border-left: 25px solid #cccbcb88;
+    margin-left: -26px;
+    margin-top: -35px;
+
+    border-bottom: 12.5px solid transparent;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .container {
+    overflow: hidden;
+  }
+  html,
+  body {
+    width: auto;
+    overflow-x: hidden;
+    overflow: hidden;
+  }
+  .avatar_name {
+    cursor: pointer;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.5rem;
+    padding-top: 7.5px;
+    width: 50px;
+  }
+  .avatar_name label {
+    margin-left: 3px;
+    cursor: pointer;
+  }
+  .avatar_container {
+    margin-left: 0px;
+    margin-right: auto;
+    padding-bottom: 2px;
+    border: 2px solid white;
+    border-radius: 100px;
+    padding-top: 0px;
+  }
+
+  .avatar_message {
+    display: none;
+  }
+  .avatar_message label {
+    display: none;
+  }
+
+  .triangle {
+    display: none;
+  }
+}

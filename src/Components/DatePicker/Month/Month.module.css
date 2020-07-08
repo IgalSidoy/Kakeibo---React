@@ -1,0 +1,26 @@
+.container {
+  padding-top: 7px;
+  margin: 10px;
+  height: 35px;
+  width: 55px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition-duration: 0.25s;
+  color: black;
+}
+.container:hover {
+  background-color: rgba(177, 177, 177, 0.342);
+}
+
+.selected {
+  background-color: #00779b;
+  padding-top: 7px;
+  margin: 10px;
+  height: 35px;
+  width: 55px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition-duration: 0.25s;
+}

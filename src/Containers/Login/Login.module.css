@@ -1,0 +1,96 @@
+.loader {
+  margin-top: -30px;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.imgBack {
+  min-height: 100%;
+}
+
+.container {
+  width: 50%;
+  min-width: 300px;
+  max-width: 500px;
+  height: 420px;
+  margin: auto;
+  background-color: #9ee493;
+  border-radius: 5px;
+  margin-top: 1rem;
+  box-shadow: 2px 2px 10px rgba(12, 21, 46, 0.568);
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-size: 2.5rem;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.486);
+  font-weight: 550;
+  padding: 1rem;
+}
+.row {
+  flex: 1;
+}
+
+.rowLine {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+.col {
+  flex: 1;
+  margin: 0.5rem;
+}
+
+.col_input {
+  flex: 1;
+  margin: 0.5rem;
+
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.button {
+  width: 222px;
+  border: 1px solid rgb(150, 148, 148);
+  margin: auto;
+  border-radius: 5px;
+  height: 40px;
+  box-shadow: 0px 2px 4px rgba(105, 105, 105, 0.288);
+  padding-top: 10px;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  margin-bottom: 0.5rem;
+}
+.button:hover {
+  border: 1px solid black;
+}
+.button:active {
+  border: 1px solid black;
+  background-color: #9ee493;
+}
+.button label {
+  cursor: pointer;
+  font-weight: 550;
+  font-size: 1.2rem;
+}
+.hide {
+  display: none;
+}
+.error_message label {
+  color: red;
+  text-decoration: wavy;
+  text-align: left;
+}
+.error_message {
+  width: 70%;
+  margin: auto;
+  color: red;
+  text-decoration: wavy;
+  text-align: left;
+  min-height: 25px;
+}
+@media only screen and (max-width: 450px) {
+  .container {
+    margin-top: 6rem;
+  }
+}

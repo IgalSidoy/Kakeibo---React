@@ -1,0 +1,21 @@
+.clickContainer {
+  display: inline-block;
+}
+.clickContainer img {
+  width: 25px;
+  cursor: pointer;
+  margin-bottom: -5px;
+}
+
+.click_label label {
+  font-size: 1.2rem;
+  font-weight: 650;
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 5px;
+}
+.click_img {
+  display: inline-block;
+  margin-top: 7px;
+}

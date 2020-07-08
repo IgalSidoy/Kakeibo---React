@@ -1,0 +1,23 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-kakeibo-dev-130547-authRole",
+            "UnauthRoleArn": "arn:aws:iam::915611942060:role/amplify-kakeibo-dev-130547-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::915611942060:role/amplify-kakeibo-dev-130547-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-kakeibo-dev-130547-deployment",
+            "UnauthRoleName": "amplify-kakeibo-dev-130547-unauthRole",
+            "StackName": "amplify-kakeibo-dev-130547",
+            "StackId": "arn:aws:cloudformation:us-east-1:915611942060:stack/amplify-kakeibo-dev-130547/2cc81b40-8aca-11ea-acc1-0af60b3b604b",
+            "AmplifyAppId": "d8yyabn9bb993"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d8yyabn9bb993",
+                    "type": "manual"
+                }
+            }
+        }
+    }
+}

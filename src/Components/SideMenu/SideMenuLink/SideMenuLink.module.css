@@ -1,0 +1,38 @@
+.container {
+  font-size: 1.2rem;
+  text-align: left;
+  cursor: "pointer";
+  margin: 0.2rem;
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  display: flex;
+}
+.title {
+  flex: 6;
+}
+.icon {
+  flex: 1;
+  filter: invert();
+}
+
+.container label {
+  cursor: pointer;
+}
+.container:hover {
+  background-color: #0d6681;
+}
+.selected {
+  display: flex;
+
+  font-size: 1.2rem;
+  text-align: left;
+  cursor: "pointer";
+  margin: 0.5rem;
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  background-color: #034255;
+}

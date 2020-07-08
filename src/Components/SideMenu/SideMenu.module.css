@@ -1,0 +1,51 @@
+.parent_container {
+  border-radius: 5px;
+}
+.container {
+  background-color: #00779b;
+  color: white;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  width: 250px;
+  box-shadow: 2px 5px 20px black;
+  transition-duration: 1s;
+}
+
+.title {
+  text-align: left;
+  padding: 1rem;
+  padding-top: 1.2rem;
+  padding-bottom: 1.3rem;
+  font-size: 1.5rem;
+  transition-duration: 0.2s;
+  display: flex;
+}
+.title img {
+  filter: invert();
+}
+.text {
+  flex: 5;
+}
+.icon {
+  flex: 1;
+}
+.icon img {
+  width: 30px;
+}
+.title label {
+  cursor: pointer;
+}
+.title:hover {
+  background-color: #056d8d;
+}
+hr {
+  height: 1px;
+  background-color: #036380;
+  border: none;
+}
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}

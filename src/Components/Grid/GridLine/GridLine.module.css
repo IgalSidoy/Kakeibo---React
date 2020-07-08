@@ -1,0 +1,10 @@
+.title label {
+  font-weight: 580;
+}
+.container {
+  margin: 0;
+  padding: 0;
+}
+.container:hover {
+  background-color: #f5f5f7;
+}

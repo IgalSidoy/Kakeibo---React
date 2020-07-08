@@ -1,0 +1,86 @@
+.updateContainer {
+  height: 90px;
+  width: 350px;
+  border-radius: 5px;
+  padding: 1rem;
+  box-shadow: 1px 2px 3px rgb(197, 197, 197);
+  position: fixed;
+  background-color: #c9edf8;
+  margin-top: 20px;
+}
+.updateContainer input {
+  border: none;
+  outline: none;
+  border: 2px solid transparent;
+  border-bottom: 2px solid #1488ac;
+  width: 97%;
+
+  background-color: transparent;
+  font-size: 1.1rem;
+  padding: 0.2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+
+  transition-duration: 0.25s;
+}
+.updateContainer input:focus {
+  border: 2px solid #1488ac;
+  border-radius: 5px;
+}
+
+.triangleUp {
+  width: 0;
+  margin-left: 25px;
+  position: fixed;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 30px solid #c9edf8;
+}
+.btnOK {
+  background-color: #1488ac;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  padding: 0.5rem;
+  margin: 0.7rem;
+  font-weight: 650;
+  border: 2px solid #1488ac;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+.btnOK:hover {
+  background-color: #106c88;
+}
+.btnOK label {
+  cursor: pointer;
+}
+.btnCancel label {
+  cursor: pointer;
+}
+.btnCancel {
+  background-color: white;
+  color: #1488ac;
+  border-radius: 5px;
+  text-align: center;
+  padding: 0.5rem;
+  margin: 0.7rem;
+  font-weight: 650;
+  border: 2px solid #1488ac;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+.btnCancel:hover {
+  background-color: #1488ac;
+  color: white;
+}
+.title {
+  display: inline-block;
+}
+.title label {
+  font-weight: 580;
+}
+.title img {
+  cursor: pointer;
+  display: inline-block;
+}

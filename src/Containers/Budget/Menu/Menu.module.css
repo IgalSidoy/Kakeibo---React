@@ -1,0 +1,135 @@
+@media only screen and (max-width: 450px) {
+  .container {
+    display: flex;
+  }
+  .cell1 {
+    flex: 1;
+    padding-bottom: 20px;
+    padding-top: 10px;
+    border-right: 1px solid white;
+  }
+  .cell2 {
+    padding-top: 10px;
+    border-right: 1px solid white;
+    flex: 2;
+  }
+  .cell3 {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 450px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    background-color: #053a4b;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  .cell3 {
+    flex: 1;
+    margin: 5px;
+    border-radius: 5px;
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
+    transition-duration: 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.418);
+    box-shadow: 1px 2px 5px rgba(255, 255, 255, 0.178);
+  }
+
+  .cell3:hover {
+    background-color: #0d303b;
+  }
+  .cell3:active {
+    background-color: #13404e;
+  }
+  .cell1 {
+    flex: 1;
+    margin: 5px;
+    border-radius: 5px;
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
+  }
+  .cell2 {
+    flex: 1;
+    border-radius: 5px;
+    margin: 5px;
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
+  }
+  .income_color:hover {
+    background-color: #125b74;
+  }
+  .saving_color:hover {
+    background-color: #125b74;
+  }
+  .fixed_expenses_color:hover {
+    background-color: #125b74;
+  }
+  .expenses_color:hover {
+    background-color: #125b74;
+  }
+  .row_back {
+    display: flex;
+  }
+  .col_back {
+    flex: 1;
+    transition-duration: 0.3s;
+  }
+  .col_back img {
+    margin-top: 4px;
+  }
+  .left {
+    padding-left: 115px;
+  }
+  .income_color {
+    margin: 0.5rem;
+    border: 1px solid white;
+  }
+  .saving_color {
+    margin: 0.5rem;
+    border: 1px solid white;
+  }
+  .fixed_expenses_color {
+    border: 1px solid white;
+    margin: 0.5rem;
+  }
+  .expenses_color {
+    margin: 0.5rem;
+    border: 1px solid white;
+  }
+}
+
+.income_color {
+  background-color: #00779b;
+  transition-duration: 0.2s;
+}
+.saving_color {
+  background-color: #00779b;
+  transition-duration: 0.2s;
+}
+
+.fixed_expenses_color {
+  background-color: #00779b;
+  transition-duration: 0.2s;
+}
+.expenses_color {
+  background-color: #00779b;
+  transition-duration: 0.2s;
+}
+.income_color:active {
+  background-color: #053a4b;
+}
+.saving_color:active {
+  background-color: #053a4b;
+}
+.fixed_expenses_color:active {
+  background-color: #053a4b;
+}
+.expenses_color:active {
+  background-color: #053a4b;
+}
+.selected {
+  background-color: #053a4b;
+}

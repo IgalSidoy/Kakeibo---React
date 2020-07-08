@@ -1,0 +1,24 @@
+.col1 {
+  flex: 1;
+}
+.col2 {
+  flex: 2;
+}
+.col3 {
+  flex: 3;
+}
+.col4 {
+  flex: 4;
+}
+.col5 {
+  flex: 5;
+}
+.col6 {
+  flex: 6;
+}
+.border {
+  border: 1px solid rgba(196, 196, 196, 0.692);
+}
+.border_right {
+  border-right: 1px solid rgba(196, 196, 196, 0.692);
+}

@@ -1,0 +1,28 @@
+.gridLineTitle {
+  color: rgb(109, 107, 107);
+  font-size: 0.8rem;
+  text-align: left;
+}
+.gridLine {
+  color: rgb(37, 37, 37);
+  font-size: 1rem;
+  text-align: left;
+}
+.gridLine label {
+}
+.gridContainer {
+  background-color: #e5f5ff;
+}
+.container {
+}
+@media only screen and (min-width: 700px) {
+  .container {
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .container {
+    overflow-x: scroll;
+    max-width: 600px;
+  }
+}
