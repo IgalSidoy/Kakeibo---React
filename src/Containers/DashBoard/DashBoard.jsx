@@ -20,8 +20,8 @@ import classes from "./DashBoard.module.css";
 
 export default class DashBoard extends React.Component {
   state = {
-    baseUrl_DEV: "https://dry-falls-91776.herokuapp.com",
-    baseUrl: "http://localhost:4500",
+    baseUrl: "https://dry-falls-91776.herokuapp.com",
+    baseUrl_DEV: "http://localhost:4500",
     apiRouts: {
       FETCH_BY_DATE: "/api/expense?from_date=",
       FETCH_BY_TYPE: "/api/expense?type=",
