@@ -1,4 +1,4 @@
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 850px) {
   .container {
     display: flex;
   }
@@ -18,7 +18,7 @@
   }
 }
 
-@media only screen and (min-width: 450px) {
+@media only screen and (min-width: 850px) {
   .container {
     display: flex;
     flex-direction: column;
@@ -26,6 +26,7 @@
     background-color: #053a4b;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+    margin-top: 40px;
   }
   .cell3 {
     flex: 1;

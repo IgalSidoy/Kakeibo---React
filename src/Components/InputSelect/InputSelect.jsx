@@ -15,8 +15,8 @@ export default (props) => {
   if (props.pattern !== undefined) {
     pattern = props.pattern;
   }
-  let onKeyDown = props.onKeyDown;
-  if (props.onKeyDown === undefined) onKeyDown = () => {};
+  let OnBlurHandler = props.OnBlurHandler;
+  if (props.OnBlurHandler === undefined) OnBlurHandler = () => {};
 
   let disabled = false;
   if (props.disabled !== undefined) {
@@ -37,9 +37,7 @@ export default (props) => {
       onChange={props.onChange}
       type={"text"}
       inputProps={pattern}
-      onKeyDown={(e) => {
-        onKeyDown(e);
-      }}
+      onBlur={OnBlurHandler}
     >
       {options}
     </TextField>

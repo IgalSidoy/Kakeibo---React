@@ -1,7 +1,8 @@
 @media only screen and (max-width: 850px) {
   .row {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    margin-top: -10px;
   }
   .col_menu {
   }
@@ -19,21 +20,31 @@
   .chart_col {
     flex-basis: 400px;
     max-height: 200px;
+    margin-top: 10px;
   }
   .container_col {
     flex: 1;
     overflow-y: scroll;
     max-height: 38vh;
   }
+  .graph {
+    border-bottom: 1.5px solid rgba(209, 208, 208, 0.288);
+    display: inline-block;
+  }
+  .graph_extra {
+    display: none;
+  }
 }
 @media only screen and (min-width: 850px) {
   .row {
     display: flex;
-    flex-wrap: wrap-reverse;
+    flex-direction: column;
   }
   .col_menu {
     flex-basis: 40px;
     background-color: #053a4b;
+    max-width: 40px;
+    margin-top: -50px;
   }
   .menu {
   }
@@ -43,13 +54,27 @@
 
     background-color: #ebf6fd;
   }
-  .chart_col {
-    flex-basis: 300px;
-  }
+
   .container_col {
     flex: 1;
+    margin-top: -15px;
   }
-}
-
-.chart_col {
+  .chart_col {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-between;
+  }
+  .graph {
+    border-right: 1.5px solid rgba(209, 208, 208, 0.288);
+    border-bottom: 1.5px solid rgba(209, 208, 208, 0.288);
+    flex: 1;
+  }
+  .graph_extra {
+    border-bottom: 1.5px solid rgba(209, 208, 208, 0.288);
+    flex: 1;
+  }
+  .center {
+    display: inline-block;
+  }
 }

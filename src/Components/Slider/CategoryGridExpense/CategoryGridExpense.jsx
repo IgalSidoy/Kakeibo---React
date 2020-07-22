@@ -14,8 +14,6 @@ export default (props) => {
     fontSize = "1rem";
     labelSize = "1rem";
   }
-
-  console.log(props.category);
   return (
     <div>
       <div className={classes.container}>
