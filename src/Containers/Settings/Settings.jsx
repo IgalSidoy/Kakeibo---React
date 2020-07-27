@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Loader from "../../Components/Loader/Loader";
 import classes from "./Settings.module.css";
-
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import InputSelect from "../../Components/InputSelect/InputSelect";
@@ -36,6 +37,24 @@ export default class extends Component {
     add_category: false,
     add_category_error: "",
     delete_category: false,
+
+    settings: {
+      currency: "",
+      currencies: [
+        {
+          label: "NIS-₪",
+          value: "NIS-₪",
+        },
+        {
+          label: "USD-$",
+          value: "USD-$",
+        },
+        {
+          label: "EUR-€",
+          value: "EUR-€",
+        },
+      ],
+    },
   };
 
   show_hide_message_box(show, msg) {
@@ -143,6 +162,56 @@ export default class extends Component {
       }
     } catch (error) {}
   }
+  async getSettnigs() {
+    const updateURL = this.props.baseUrl + this.props.apiRouts.SETTINGS;
+    try {
+      const response = await fetch(updateURL, {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "omit", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.props.user.token,
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        // body: JSON.stringify(body), // body data type must match "Content-Type" header
+      });
+
+      if (response.status === 200) {
+        const json = await response.json();
+        let settings = JSON.parse(JSON.stringify(this.state.settings));
+        settings.currency = json[0].currency;
+        this.setState({ settings });
+      }
+    } catch (error) {}
+  }
+
+  async updateSettnigs(obj) {
+    const updateURL = this.props.baseUrl + this.props.apiRouts.SETTINGS;
+    try {
+      let body = { currency: obj.currency };
+      const response = await fetch(updateURL, {
+        method: "PATCH", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "omit", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.props.user.token,
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(body), // body data type must match "Content-Type" header
+      });
+
+      if (response.status === 200) {
+      }
+    } catch (error) {
+      console.log("save currency ", error);
+    }
+  }
 
   async loadUserProfile() {
     const getProfileURL = this.props.baseUrl + this.props.get_profile;
@@ -176,6 +245,7 @@ export default class extends Component {
   async componentDidMount() {
     await this.getAllCountries();
     await this.getAllCategories();
+    await this.getSettnigs();
     await this.loadUserProfile();
 
     window.addEventListener("keydown", (e) => {
@@ -237,6 +307,11 @@ export default class extends Component {
     if (type === "new_category") {
       this.setState({ new_category: value });
       return;
+    }
+    if (type === "currency") {
+      let settings = JSON.parse(JSON.stringify(this.state.settings));
+      settings.currency = value;
+      this.setState({ settings });
     }
 
     //
@@ -500,6 +575,7 @@ export default class extends Component {
             <div className={classes.row}>
               <div className={classes.col}>
                 <TextField
+                  size="small"
                   disabled={true}
                   label="Email"
                   variant="outlined"
@@ -514,6 +590,7 @@ export default class extends Component {
             <div className={classes.row}>
               <div className={classes.col}>
                 <TextField
+                  size="small"
                   label="FirstName"
                   variant="outlined"
                   fullWidth={true}
@@ -528,6 +605,7 @@ export default class extends Component {
             <div className={classes.row}>
               <div className={classes.col}>
                 <TextField
+                  size="small"
                   label="LastName"
                   variant="outlined"
                   fullWidth={true}
@@ -544,6 +622,7 @@ export default class extends Component {
                 <TextField
                   id="gender"
                   select
+                  size="small"
                   label="Gender"
                   variant="outlined"
                   fullWidth={true}
@@ -563,6 +642,7 @@ export default class extends Component {
                 <TextField
                   id="counteries"
                   select
+                  size="small"
                   type="text"
                   label="Countery"
                   variant="outlined"
@@ -583,6 +663,7 @@ export default class extends Component {
             <div className={classes.row}>
               <div className={classes.col}>
                 <TextField
+                  size="small"
                   label="Moblie"
                   variant="outlined"
                   fullWidth={true}
@@ -673,9 +754,60 @@ export default class extends Component {
                 </div>
               </div>
             </div>
+
+            <div className={classes.row + " " + classes.cell_title}>
+              <div className={classes.col}>
+                <label>General Settings</label>
+              </div>
+            </div>
+            <div className={classes.row}>
+              <div className={classes.col}>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      inputProps={{ "aria-label": "secondary checkbox" }}
+                      checked={this.props.user.remove_enabled}
+                      onChange={(e) =>
+                        this.update_remove_enabled(e.target.checked)
+                      }
+                      name="checkedB"
+                      color="primary"
+                    />
+                  }
+                  label="Remove Enabled"
+                />
+              </div>
+            </div>
+            <div className={classes.row}>
+              <div className={classes.col}>
+                <InputSelect
+                  OnBlurHandler={(e) => {
+                    this.updateSettnigs({ currency: e.target.value });
+                  }}
+                  value={this.state.settings.currency}
+                  isSelect={true}
+                  label={"currency"}
+                  dataSet={this.state.settings.currencies}
+                  onChange={(e) => {
+                    this.onChange("currency", e.target.value);
+                  }}
+                ></InputSelect>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     );
   }
+  update_remove_enabled = async (remove_enabled) => {
+    await this.props.update_remove_enabled(remove_enabled);
+    let msg = "delete expense - enabled";
+    if (!remove_enabled) msg = "delete expense - disabled";
+    this.setState({
+      messageBox: {
+        show: true,
+        msg,
+      },
+    });
+  };
 }

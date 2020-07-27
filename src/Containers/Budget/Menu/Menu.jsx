@@ -8,7 +8,7 @@ export default (props) => {
   const [show, setShow] = useState(false);
   const [linkSelected, setLinkSelected] = useState("expenses");
   let back_button = classes.col_back;
-  if (window.innerWidth >= 500) {
+  if (window.innerWidth >= 850) {
     if (show) {
       menuStyle.transform = "translateX(0px)";
       menuStyle.transitionDuration = "0.3s";

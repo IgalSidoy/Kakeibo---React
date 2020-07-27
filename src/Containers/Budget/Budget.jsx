@@ -37,6 +37,9 @@ export default class Budget extends React.Component {
     },
     pieChart: {
       options: {
+        legend: {
+          show: false,
+        },
         chart: {
           id: "basic-bar",
         },
@@ -53,28 +56,68 @@ export default class Budget extends React.Component {
       type: "pie",
       title: "",
     },
+    barChart: {
+      options: {
+        chart: {
+          type: "bar",
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: "50%",
+            distributed: true,
+          },
+        },
+        dataLabels: {
+          enabled: false,
+        },
+        legend: {
+          show: false,
+        },
+        xaxis: {
+          categories: [["Inc"], ["Sav"], ["Fixed"], ["Exp"], ["Free"]],
+          labels: {
+            style: {
+              fontSize: "12px",
+            },
+          },
+        },
+      },
+      series: [
+        {
+          data: [0, 0, 0, 0, 0],
+        },
+      ],
+      width: 350,
+      type: "bar",
+      title: "",
+    },
     loaded: false,
     const_expence_update: false,
   };
 
   resize() {
     let pieChart = JSON.parse(JSON.stringify(this.state.pieChart));
-
+    let barChart = JSON.parse(JSON.stringify(this.state.barChart));
     if (window.innerWidth < 850) {
-      pieChart.width = 300;
+      pieChart.width = 220;
+      barChart.width = 280;
       this.setState({
         screeWidth: window.innerWidth,
         pieChart,
+        barChart,
       });
     } else {
       let width = window.innerWidth / 3;
-      if (width > 400) width = 400;
+      if (width > 500) width = 450;
       if (width < 280) width = 280;
-      pieChart.width = width;
+      width = 400;
+      pieChart.width = width - 100;
+      barChart.width = width + 30;
 
       this.setState({
         screeWidth: window.innerWidth,
         pieChart,
+        barChart,
       });
     }
   }
@@ -93,7 +136,6 @@ export default class Budget extends React.Component {
     this.selectDateHandler(date);
     this.load_categories();
   }
-
   render() {
     let sub_menus = (
       <React.Fragment>
@@ -105,6 +147,8 @@ export default class Budget extends React.Component {
             screeWidth={this.state.screeWidth}
             delete_rec_by_id={this.delete_rec_by_id}
             categories={this.state.subCategory}
+            saveUpdateValueHandler={this.saveUpdateValueHandler}
+            remove_enabled={this.props.user.remove_enabled}
           ></TableInput>
         </Route>
         <Route path={this.state.category.saving.path}>
@@ -115,6 +159,8 @@ export default class Budget extends React.Component {
             screeWidth={this.state.screeWidth}
             delete_rec_by_id={this.delete_rec_by_id}
             categories={this.state.subCategory}
+            saveUpdateValueHandler={this.saveUpdateValueHandler}
+            remove_enabled={this.props.user.remove_enabled}
           ></TableInput>
         </Route>
         <Route path={this.state.category.const_expense.path}>
@@ -125,6 +171,8 @@ export default class Budget extends React.Component {
             screeWidth={this.state.screeWidth}
             delete_rec_by_id={this.delete_rec_by_id}
             categories={this.state.subCategory}
+            saveUpdateValueHandler={this.saveUpdateValueHandler}
+            remove_enabled={this.props.user.remove_enabled}
           ></TableInput>
         </Route>
         <Route path={this.state.category.expense.path}>
@@ -135,6 +183,8 @@ export default class Budget extends React.Component {
             onChange={this.onChange}
             screeWidth={this.state.screeWidth}
             delete_rec_by_id={this.delete_rec_by_id}
+            saveUpdateValueHandler={this.saveUpdateValueHandler}
+            remove_enabled={this.props.user.remove_enabled}
           ></TableInput>
         </Route>
       </React.Fragment>
@@ -161,18 +211,53 @@ export default class Budget extends React.Component {
           </div>
           <div className={classes.col}>
             <div className={classes.row}>
-              <div className={classes.container_col}>{sub_menus}</div>
-
               <div className={classes.chart_col}>
-                <Chart data={this.state.pieChart}></Chart>
+                <div className={classes.graph}>
+                  <div className={classes.center}>
+                    <Chart data={this.state.pieChart}></Chart>
+                  </div>
+                </div>
+                <div className={classes.graph_extra}>
+                  <div className={classes.center}>
+                    <Chart data={this.state.barChart}></Chart>
+                  </div>
+                </div>
               </div>
+              <div className={classes.container_col}>{sub_menus}</div>
             </div>
           </div>
         </div>
       </div>
     );
   }
-
+  saveUpdateValueHandler = (
+    categoryName,
+    index,
+    type,
+    value,
+    id,
+    from_date,
+    to_date,
+    updated
+  ) => {
+    try {
+      let body = {};
+      if (type === "title") {
+        body.title = value.value;
+        this.update_rec_by_id(id, body);
+      }
+      if (type === "sum") {
+        body.sum = +value.value;
+        this.update_rec_by_id(id, body);
+      }
+      if (type === "category") {
+        body.category = value.value;
+        this.update_rec_by_id(id, body);
+      }
+    } catch (e) {
+      console.log("error", e);
+    }
+  };
   onChange = async (
     categoryName,
     index,
@@ -184,11 +269,8 @@ export default class Budget extends React.Component {
     updated
   ) => {
     value = value.value;
-
     let category = JSON.parse(JSON.stringify(this.state.category));
-
     if (type === "sum" && isNaN(+value)) return;
-
     if (type === "payments" && isNaN(+value)) return;
     if (type === "payments" && value === "") value = 0;
 
@@ -236,17 +318,17 @@ export default class Budget extends React.Component {
       if (type === "title") {
         category[cat_Name].data[index].title = value;
         body.title = value;
-        this.update_rec_by_id(id, body);
+        // this.update_rec_by_id(id, body);
       }
       if (type === "sum") {
         body.sum = +value;
         category[cat_Name].data[index].sum = +value;
-        this.update_rec_by_id(id, body);
+        //this.update_rec_by_id(id, body);
       }
       if (type === "category") {
         body.category = value;
         category[cat_Name].data[index].category = value;
-        this.update_rec_by_id(id, body);
+        //this.update_rec_by_id(id, body);
       }
 
       if (type === "payments") {
@@ -260,7 +342,7 @@ export default class Budget extends React.Component {
           let from_date = category[cat_Name].data[index].from_date.toString();
           let year = +from_date.slice(0, 4);
           let month = +from_date.slice(4, 6);
-          let months_count = month + +value;
+          let months_count = month + +value - 1;
           let to_date = this.getNextDate(year, month, months_count);
           body.to_date = to_date;
           this.update_rec_by_id(id, body);
@@ -278,7 +360,7 @@ export default class Budget extends React.Component {
     // console.log(year, month, months);
     for (let i = 0; i < months - month; i++) {
       reuslt_month++;
-      console.log(reuslt_month);
+      //console.log(reuslt_month);
       if (reuslt_month > 12) {
         reuslt_month = 1;
         year++;
@@ -290,7 +372,6 @@ export default class Budget extends React.Component {
 
     return result;
   }
-
   updateCategoryHandler = (category) => {
     let series = [0, 0, 0, 0];
     let tabal = [];
@@ -310,9 +391,12 @@ export default class Budget extends React.Component {
   };
   renderChart = (series) => {
     let pieChart = JSON.parse(JSON.stringify(this.state.pieChart));
+    let barChart = JSON.parse(JSON.stringify(this.state.barChart));
     pieChart.series = series;
+    barChart.series[0].data = series;
     this.setState({
       pieChart,
+      barChart,
     });
   };
   //loads data by date and updates date
@@ -399,6 +483,7 @@ export default class Budget extends React.Component {
             updated: const_expenses[exp].updated,
             recored_updated: const_expenses[exp].updatedAt,
           };
+          let payments_ended = false;
           if (ex.to_date === 999999) ex.payments = 0;
           else {
             let years =
@@ -408,8 +493,11 @@ export default class Budget extends React.Component {
               +const_expenses[exp].to_date.toString().slice(4, 6) -
               +yyyymm_arr[0];
             ex.payments = years * 12 + months;
+            if (ex.payments < 0) {
+              payments_ended = true;
+            }
           }
-          category.const_expense.data.push(ex);
+          if (!payments_ended) category.const_expense.data.push(ex);
         }
         this.renderChart(this.updateCategoryHandler(category));
         this.setState({ date, loaded: true });

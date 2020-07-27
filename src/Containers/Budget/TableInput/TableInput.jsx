@@ -42,6 +42,8 @@ export default (props) => {
                   updated={line.updated}
                   payments={line.payments}
                   recored_updated={line.recored_updated}
+                  saveUpdateValueHandler={props.saveUpdateValueHandler}
+                  remove_enabled={props.remove_enabled}
                 ></TableLine>
               </div>
             </div>

@@ -30,6 +30,7 @@ export default class DashBoard extends React.Component {
       LOG_OUT: "/api/user/logout",
       REGISTER: "/api/user",
       GET_PROFILE: "/api/users/me",
+      SETTINGS: "/api/settings",
     },
     showMenu: false,
     show_avatar_menu: false,
@@ -40,10 +41,9 @@ export default class DashBoard extends React.Component {
       last_name: "",
       logedIn: false,
       email: "",
-      introduction: false,
+      remove_enabled: false,
     },
-    google_client_id:
-      "46054061299-9kephk411vj360n7ui9dpeo88uvpujrh.apps.googleusercontent.com",
+
     category: {
       income: {
         title: "Income",
@@ -125,18 +125,16 @@ export default class DashBoard extends React.Component {
       last_name: "",
       email,
       logedIn: false,
-      introduction,
     };
     if (user_fetch) {
       user.first_name = user_fetch.first_name;
       user.last_name = user_fetch.last_name;
+      user.remove_enabled = user_fetch.remove_enabled;
     }
-
     if (token !== null) user.logedIn = true;
     this.setState({
       user,
     });
-    // console.dir(user);
   }
 
   render() {
@@ -230,7 +228,6 @@ export default class DashBoard extends React.Component {
                   baseUrl={this.state.baseUrl}
                   loginValidate={this.user_loging_validate_handler}
                   user={this.state.user}
-                  google_client_id={this.state.google_client_id}
                 ></Login>
               </Route>
               <Route path="/register">
@@ -254,6 +251,7 @@ export default class DashBoard extends React.Component {
                   update_profile_url={this.state.apiRouts.REGISTER}
                   baseUrl={this.state.baseUrl}
                   user={this.state.user}
+                  update_remove_enabled={this.update_remove_enabled}
                 ></Settings>
               </this.PrivateRoute>
 
@@ -327,5 +325,50 @@ export default class DashBoard extends React.Component {
         throw new Error("something went wrong , please try again later");
       }
     } catch (error) {}
+  };
+
+  update_remove_enabled = async (remove_enabled) => {
+    // console.log(this.state.user);
+
+    const updateURL = this.state.baseUrl + this.state.apiRouts.REGISTER;
+    // console.log(updateURL);
+
+    const body = {
+      remove_enabled,
+    };
+
+    try {
+      const response = await fetch(updateURL, {
+        method: "PATCH", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "omit", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.state.user.token,
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(body), // body data type must match "Content-Type" header
+      });
+
+      if (response.status === 200) {
+        const json = await response.json();
+
+        let user = JSON.parse(JSON.stringify(this.state.user));
+        user.remove_enabled = json.remove_enabled;
+
+        this.setState({ user });
+      }
+
+      if (response.status === 400) {
+        throw new Error("something went wrong , please try again later");
+      }
+    } catch (error) {
+      this.setState({
+        personal_details_error: "*" + error,
+        personal_update: false,
+      });
+    }
   };
 }

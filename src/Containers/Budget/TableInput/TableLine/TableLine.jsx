@@ -68,6 +68,7 @@ export default (props) => {
         value={props.payments}
         label={"payments"}
         pattern={{ inputMode: "numeric" }}
+        onKeyPress={(e) => props.onKeyPress(e.keyCode)}
         onChange={(e) =>
           props.onChange(
             props.name,
@@ -97,6 +98,18 @@ export default (props) => {
           value={props.title}
           isSelect={false}
           label={"title"}
+          OnBlurHandler={(e) => {
+            props.saveUpdateValueHandler(
+              props.name,
+              props.index,
+              "title",
+              e.target,
+              props.id,
+              props.from_date,
+              props.to_date,
+              props.updated
+            );
+          }}
           onChange={(e) =>
             props.onChange(
               props.name,
@@ -121,6 +134,18 @@ export default (props) => {
           isSelect={true}
           label={"category"}
           dataSet={props.categories}
+          OnBlurHandler={(e) => {
+            props.saveUpdateValueHandler(
+              props.name,
+              props.index,
+              "category",
+              e.target,
+              props.id,
+              props.from_date,
+              props.to_date,
+              props.updated
+            );
+          }}
           onChange={(e) =>
             props.onChange(
               props.name,
@@ -136,13 +161,24 @@ export default (props) => {
         ></ButtonSelect>
       </div>
       {payments}
-
       <div className={classes.col}>
         <ButtonSelect
           value={props.sum}
           isSelect={false}
           label={"sum"}
           pattern={{ inputMode: "numeric" }}
+          OnBlurHandler={(e) => {
+            props.saveUpdateValueHandler(
+              props.name,
+              props.index,
+              "sum",
+              e.target,
+              props.id,
+              props.from_date,
+              props.to_date,
+              props.updated
+            );
+          }}
           onChange={(e) =>
             props.onChange(
               props.name,
@@ -157,18 +193,23 @@ export default (props) => {
           }
         ></ButtonSelect>
       </div>
-      <div className={delete_button + " " + classes.deskto_delete_button}>
-        <Button
-          size="small"
-          variant="contained"
-          color={"secondary"}
-          onClick={() => {
-            onDelete(props.table_title, props.id);
-          }}
-        >
-          remove
-        </Button>
-      </div>
+
+      {props.remove_enabled ? (
+        <div className={delete_button + " " + classes.deskto_delete_button}>
+          <Button
+            size="small"
+            variant="contained"
+            color={"secondary"}
+            onClick={() => {
+              onDelete(props.table_title, props.id);
+            }}
+          >
+            remove
+          </Button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
   if (props.screeWidth >= 850) {
@@ -212,6 +253,18 @@ export default (props) => {
           value={props.title}
           isSelect={false}
           label={"title"}
+          OnBlurHandler={(e) => {
+            props.saveUpdateValueHandler(
+              props.name,
+              props.index,
+              "title",
+              e.target,
+              props.id,
+              props.from_date,
+              props.to_date,
+              props.updated
+            );
+          }}
           onChange={(e) =>
             props.onChange(
               props.name,
@@ -232,6 +285,18 @@ export default (props) => {
           isSelect={false}
           label={"sum"}
           pattern={{ inputMode: "numeric" }}
+          OnBlurHandler={(e) => {
+            props.saveUpdateValueHandler(
+              props.name,
+              props.index,
+              "sum",
+              e.target,
+              props.id,
+              props.from_date,
+              props.to_date,
+              props.updated
+            );
+          }}
           onChange={(e) =>
             props.onChange(
               props.name,
@@ -246,13 +311,24 @@ export default (props) => {
           }
         ></ButtonSelect>
       </div>
-
       <div className={classes.line}>
         <ButtonSelect
           value={props.category}
           isSelect={true}
           label={"category"}
           dataSet={props.categories}
+          OnBlurHandler={(e) => {
+            props.saveUpdateValueHandler(
+              props.name,
+              props.index,
+              "category",
+              e.target,
+              props.id,
+              props.from_date,
+              props.to_date,
+              props.updated
+            );
+          }}
           onChange={(e) =>
             props.onChange(
               props.name,
@@ -309,18 +385,22 @@ export default (props) => {
           </div>
         </div>
 
-        <div className={delete_button + " " + classes.deskto_delete_button}>
-          <Button
-            size="small"
-            variant="contained"
-            color={"secondary"}
-            onClick={() => {
-              onDelete(props.table_title, props.id);
-            }}
-          >
-            remove
-          </Button>
-        </div>
+        {props.remove_enabled ? (
+          <div className={delete_button + " " + classes.deskto_delete_button}>
+            <Button
+              size="small"
+              variant="contained"
+              color={"secondary"}
+              onClick={() => {
+                onDelete(props.table_title, props.id);
+              }}
+            >
+              remove
+            </Button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
 
       {extra}
