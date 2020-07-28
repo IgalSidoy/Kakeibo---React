@@ -260,6 +260,7 @@ export default class DashBoard extends React.Component {
                   user={this.state.user}
                   get_expenses={this.state.apiRouts.CREATE_NEW_REC}
                   baseUrl={this.state.baseUrl}
+                  apiRouts={this.state.apiRouts}
                 ></Reports>
               </this.PrivateRoute>
 

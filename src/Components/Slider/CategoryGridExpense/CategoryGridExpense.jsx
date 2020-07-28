@@ -28,6 +28,7 @@ export default (props) => {
               fontSize={fontSize}
               color={color}
               labelSize={labelSize}
+              symbol={props.symbol}
             ></GridLine>
           </div>
         ))}

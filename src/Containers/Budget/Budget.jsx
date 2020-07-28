@@ -6,6 +6,7 @@ import TableInput from "./TableInput/TableInput";
 import Chart from "../../Components/Charts/Chart/Chart";
 import Loader from "../../Components/Loader/Loader";
 import { Route } from "react-router-dom";
+import API from "../../API/REST_API";
 export default class Budget extends React.Component {
   state = {
     date: "",
@@ -93,6 +94,7 @@ export default class Budget extends React.Component {
     },
     loaded: false,
     const_expence_update: false,
+    settings: { currency: "" },
   };
 
   resize() {
@@ -122,7 +124,10 @@ export default class Budget extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentWillUnmount() {
+    window.removeEventListener("resize", () => {});
+  }
+  componentDidMount = async () => {
     this.resize();
     window.addEventListener("resize", () => {
       this.resize();
@@ -135,7 +140,21 @@ export default class Budget extends React.Component {
     });
     this.selectDateHandler(date);
     this.load_categories();
-  }
+    this.loadSettings();
+  };
+  loadSettings = async () => {
+    let settingsURL = this.props.baseUrl + this.props.apiRouts.SETTINGS;
+    let settings = await API.Get(settingsURL, this.props.user.token);
+    delete settings[0].createdAt;
+    delete settings[0].owner;
+    delete settings[0].updatedAt;
+    delete settings[0].__v;
+    delete settings[0]._id;
+    settings[0].symbol = settings[0].currency.split("-")[1];
+    this.setState({
+      settings: settings[0],
+    });
+  };
   render() {
     let sub_menus = (
       <React.Fragment>
@@ -149,6 +168,7 @@ export default class Budget extends React.Component {
             categories={this.state.subCategory}
             saveUpdateValueHandler={this.saveUpdateValueHandler}
             remove_enabled={this.props.user.remove_enabled}
+            symbol={this.state.settings.symbol}
           ></TableInput>
         </Route>
         <Route path={this.state.category.saving.path}>
@@ -161,6 +181,7 @@ export default class Budget extends React.Component {
             categories={this.state.subCategory}
             saveUpdateValueHandler={this.saveUpdateValueHandler}
             remove_enabled={this.props.user.remove_enabled}
+            symbol={this.state.settings.symbol}
           ></TableInput>
         </Route>
         <Route path={this.state.category.const_expense.path}>
@@ -173,6 +194,7 @@ export default class Budget extends React.Component {
             categories={this.state.subCategory}
             saveUpdateValueHandler={this.saveUpdateValueHandler}
             remove_enabled={this.props.user.remove_enabled}
+            symbol={this.state.settings.symbol}
           ></TableInput>
         </Route>
         <Route path={this.state.category.expense.path}>
@@ -185,6 +207,7 @@ export default class Budget extends React.Component {
             delete_rec_by_id={this.delete_rec_by_id}
             saveUpdateValueHandler={this.saveUpdateValueHandler}
             remove_enabled={this.props.user.remove_enabled}
+            symbol={this.state.settings.symbol}
           ></TableInput>
         </Route>
       </React.Fragment>
@@ -270,7 +293,13 @@ export default class Budget extends React.Component {
   ) => {
     value = value.value;
     let category = JSON.parse(JSON.stringify(this.state.category));
-    if (type === "sum" && isNaN(+value)) return;
+
+    //if (type === "sum" && isNaN(+value)) return;
+    if (type === "sum") {
+      value = +value.split(" ")[0];
+      if (isNaN(+value)) return;
+    }
+
     if (type === "payments" && isNaN(+value)) return;
     if (type === "payments" && value === "") value = 0;
 

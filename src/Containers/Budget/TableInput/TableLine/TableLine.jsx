@@ -13,8 +13,6 @@ export default (props) => {
 
   const [expand, setExpand] = useState(false);
 
-  const symbal = "₪";
-
   let autoFocus = false;
   if (props.screeWidth >= 850) {
     autoFocus = true;
@@ -165,8 +163,8 @@ export default (props) => {
         <ButtonSelect
           value={props.sum}
           isSelect={false}
-          label={"sum"}
-          pattern={{ inputMode: "numeric" }}
+          label={"sum - " + props.symbol}
+          // pattern={{ inputMode: "numeric" }}
           OnBlurHandler={(e) => {
             props.saveUpdateValueHandler(
               props.name,
@@ -283,7 +281,7 @@ export default (props) => {
         <ButtonSelect
           value={props.sum}
           isSelect={false}
-          label={"sum"}
+          label={"sum - " + props.symbol}
           pattern={{ inputMode: "numeric" }}
           OnBlurHandler={(e) => {
             props.saveUpdateValueHandler(
@@ -381,7 +379,7 @@ export default (props) => {
 
         <div className={classes.col}>
           <div className={classes.line_title}>
-            <label>{props.sum + symbal}</label>
+            <label>{props.sum + props.symbol}</label>
           </div>
         </div>
 

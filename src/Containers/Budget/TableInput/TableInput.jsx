@@ -44,6 +44,7 @@ export default (props) => {
                   recored_updated={line.recored_updated}
                   saveUpdateValueHandler={props.saveUpdateValueHandler}
                   remove_enabled={props.remove_enabled}
+                  symbol={props.symbol}
                 ></TableLine>
               </div>
             </div>

@@ -3,6 +3,7 @@ import classes from "./Reports.module.css";
 import Slider from "../../Components/Slider/Slider";
 import DatePicker from "../../Components/DatePicker/DatePicker";
 import Loader from "../../Components/Loader/Loader";
+import API from "../../API/REST_API";
 export default class Reports extends React.Component {
   state = {
     pieChart: {
@@ -105,9 +106,10 @@ export default class Reports extends React.Component {
     screen_height: window.innerHeight,
     screen_width: window.innerWidth,
     loading: true,
+    settings: {},
   };
 
-  componentDidMount() {
+  componentDidMount = async () => {
     window.addEventListener("resize", () => {
       let pieChart = JSON.parse(JSON.stringify(this.state.pieChart));
       let radialBar = JSON.parse(JSON.stringify(this.state.radialBar));
@@ -169,9 +171,23 @@ export default class Reports extends React.Component {
       month = month.toString();
     }
     let date_yyyymm = year + month;
-    this.LoadData(date_yyyymm);
-  }
 
+    this.LoadData(date_yyyymm);
+    await this.loadSettings();
+  };
+  loadSettings = async () => {
+    let settingsURL = this.props.baseUrl + this.props.apiRouts.SETTINGS;
+    let settings = await API.Get(settingsURL, this.props.user.token);
+    delete settings[0].createdAt;
+    delete settings[0].owner;
+    delete settings[0].updatedAt;
+    delete settings[0].__v;
+    delete settings[0]._id;
+    settings[0].symbol = settings[0].currency.split("-")[1];
+    this.setState({
+      settings: settings[0],
+    });
+  };
   componentWillUnmount() {
     window.removeEventListener("resize", () => {});
     window.removeEventListener("scroll", () => {});
@@ -184,6 +200,7 @@ export default class Reports extends React.Component {
         screen_height={this.state.screen_height}
         screen_2={this.state.radialBar}
         category={this.state.category}
+        symbol={this.state.settings.symbol}
       ></Slider>
     );
     if (this.state.loading)
@@ -225,7 +242,7 @@ export default class Reports extends React.Component {
     let url = this.props.baseUrl + this.props.get_expenses + "?";
     if (yyyymm !== null) url += "&from_date=" + yyyymm;
     if (type !== null) url += "&type=" + type + "&to_date=" + yyyymm;
-    console.log(url);
+
     try {
       const res = await fetch(url, {
         method: "GET", // *GET, POST, PUT, DELETE, etc.

@@ -47,6 +47,7 @@ export default class Slider extends Component {
                 <CategoryGridExpense
                   load={this.state.screen === 1 ? true : false}
                   category={this.props.category}
+                  symbol={this.props.symbol}
                 ></CategoryGridExpense>
               </div>
             </div>

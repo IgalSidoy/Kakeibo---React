@@ -62,7 +62,7 @@ export default (props) => {
             fullWidth={true}
             type={"text"}
             disabled={true}
-            value={props.exp.total}
+            value={props.exp.total + props.symbol}
             InputProps={{
               style: {
                 color: props.color,
