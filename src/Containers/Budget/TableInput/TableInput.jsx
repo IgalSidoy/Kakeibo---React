@@ -3,9 +3,25 @@ import classes from "./TableInput.module.css";
 import TableLine from "./TableLine/TableLine";
 import Loader from "../../../Components/Loader/Loader";
 import add from "../../../img/control_point-24px.svg";
+import FAB from "../../../Components/Buttons/FAB/FAB";
 
 export default (props) => {
   const [addClicked, setAddClicked] = useState(false);
+
+  let FAB_left = "";
+  let FAB_top = "";
+  // if (props.screeWidth <= 1200) {
+  //   FAB_left = "0%";
+  //   FAB_top = "90%";
+  // }
+  if (props.screeWidth >= 850) {
+    FAB_left = "2%";
+    FAB_top = "92%";
+  }
+  if (props.screeWidth <= 850) {
+    FAB_left = "2%";
+    FAB_top = "82%";
+  }
 
   let add_icon = (
     <div className={classes.loader}>
@@ -14,6 +30,7 @@ export default (props) => {
   );
   if (!addClicked) {
     add_icon = <img src={add} alt=""></img>;
+    add_icon = "";
   }
   return (
     <div className={classes.container}>
@@ -50,7 +67,8 @@ export default (props) => {
             </div>
           </li>
         ))}
-        <li>
+
+        {/* <li>
           <div
             className={classes.add}
             onClick={async () => {
@@ -61,8 +79,23 @@ export default (props) => {
           >
             {add_icon}
           </div>
-        </li>
+        </li> */}
+        <br></br>
+        {add_icon}
       </ul>
+
+      <FAB
+        size="medium"
+        left={FAB_left}
+        top={FAB_top}
+        invert
+        color="#05394b"
+        onClick={async () => {
+          setAddClicked(true);
+          await props.onChange(props.title, "add", "", "");
+          setAddClicked(false);
+        }}
+      ></FAB>
     </div>
   );
 };
