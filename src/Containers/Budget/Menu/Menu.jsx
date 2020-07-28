@@ -5,7 +5,7 @@ import tray from "../../../img/arrow_back_ios-black-36dp.svg";
 export default (props) => {
   let menuStyle = {};
   menuStyle.color = "white";
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const [linkSelected, setLinkSelected] = useState("expenses");
   let back_button = classes.col_back;
   if (window.innerWidth >= 850) {

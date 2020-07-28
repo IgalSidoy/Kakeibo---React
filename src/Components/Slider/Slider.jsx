@@ -104,7 +104,7 @@ export default class Slider extends Component {
     );
   }
   onTouch = (type, e) => {
-    if (window.innerWidth >= 750) {
+    if (window.innerWidth >= 850) {
       return;
     }
     const sensetivity = 40;

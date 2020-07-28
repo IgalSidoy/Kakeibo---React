@@ -22,7 +22,7 @@ export default (props) => {
     if (props.screeWidth >= 850) {
       return;
     }
-    const sensetivity = 40;
+    const sensetivity = 60;
     if (type === "start") {
       SetTouch_start(e.targetTouches[0].clientX);
       return;
@@ -46,9 +46,17 @@ export default (props) => {
     props.delete_rec_by_id(name, id);
   };
 
-  let delete_button = classes.col + " " + classes.delete_buton_show;
+  let delete_button = classes.col + " " + classes.delete_buton_show_moblie;
+
+  if (props.screeWidth > 600) {
+    delete_button = classes.col + " " + classes.delete_buton_show_tablet;
+  }
+
   if (!show_delete_btn) {
-    delete_button = classes.col + " " + classes.delete_buton_hide;
+    delete_button = classes.col + " " + classes.delete_buton_hide_mobile;
+    if (props.screeWidth > 600) {
+      delete_button = classes.col + " " + classes.delete_buton_hide_tablet;
+    }
   }
 
   let categories = [
@@ -372,14 +380,19 @@ export default (props) => {
           <img src={img_expand} alt=""></img>
         </div>
         <div className={classes.col}>
-          <div className={classes.line_title}>
+          <div className={classes.line_title + " " + classes.text_left}>
             <label>{props.title}</label>
           </div>
         </div>
 
         <div className={classes.col}>
-          <div className={classes.line_title}>
-            <label>{props.sum + props.symbol}</label>
+          <div className={classes.line_title + " " + classes.text_right}>
+            <label>
+              {
+                // eslint-disable-next-line no-new-wrappers
+                props.symbol + new Number(props.sum).toLocaleString()
+              }
+            </label>
           </div>
         </div>
 

@@ -12,14 +12,26 @@
   .desktop_cells {
     display: none;
   }
-  .delete_buton_show {
-    margin-right: 0px;
+  .delete_buton_show_moblie {
+    margin-right: -10px;
     transition-duration: 0.3s;
     border: none;
   }
-  .delete_buton_hide {
+  .delete_buton_hide_mobile {
     border-radius: 5px;
-    margin-right: -180px;
+    margin-right: -150px;
+    border: none;
+    transition-duration: 0.05s;
+  }
+  .delete_buton_show_tablet {
+    margin-right: -90px;
+    transition-duration: 0.3s;
+    border: none;
+  }
+
+  .delete_buton_hide_tablet {
+    border-radius: 5px;
+    margin-right: -320px;
     border: none;
     transition-duration: 0.05s;
   }
@@ -49,6 +61,13 @@
   .line_title {
     font-weight: 500;
     padding-top: 3px;
+  }
+  .text_right {
+    text-align: right;
+  }
+
+  .text_left {
+    text-align: left;
   }
   .expand_line {
     flex-basis: 40px;
