@@ -114,7 +114,8 @@ export default (props) => {
               fullWidth={true}
               type={"text"}
               disabled={true}
-              value={exp.sum}
+              // eslint-disable-next-line no-new-wrappers
+              value={props.symbol + new Number(exp.sum).toLocaleString()}
               InputProps={{
                 style: {
                   color: props.color,

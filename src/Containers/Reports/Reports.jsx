@@ -270,8 +270,8 @@ export default class Reports extends React.Component {
     let expenses = await this.fetchData(yyyymm, null);
     let const_expenses = await this.fetchData(yyyymm, "const_expense");
 
-    let totals_series = [0, 0];
-    let totals_labels = ["Income", "Expenses"];
+    let totals_series = [0, 0, 0];
+    let totals_labels = ["Income", "Expenses", "Delta"];
 
     let temp_category = [];
 
@@ -361,6 +361,7 @@ export default class Reports extends React.Component {
     pieChart.options.labels = labels;
     pieChart.series = series;
     //
+    totals_series[2] = totals_series[0] - totals_series[1];
     radialBar.series[0] = { data: totals_series };
     radialBar.options.labels = totals_labels;
 
