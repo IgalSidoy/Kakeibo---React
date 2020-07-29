@@ -7,6 +7,10 @@
   border-radius: 50px;
   opacity: 0.4;
 }
+.container:hover {
+  opacity: 1;
+  transition-duration: 0.3s;
+}
 
 .container:active {
   opacity: 1;
