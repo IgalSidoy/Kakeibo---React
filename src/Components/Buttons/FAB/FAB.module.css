@@ -1,7 +1,6 @@
 .container {
   /* position: fixed; */
   display: block;
-  border-radius: 50px;
   cursor: pointer;
   transition-duration: 0.3s;
   border-radius: 50px;
@@ -62,10 +61,6 @@
   margin-top: 7px;
 }
 
-.shahow {
-  border-radius: 50px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.692);
-}
 .invert {
   filter: invert(100);
   border-radius: 50px;

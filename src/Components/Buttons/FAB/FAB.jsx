@@ -12,8 +12,7 @@ export default (props) => {
   if (props.size === "large") {
     btn_size = classes.large;
   }
-  let shahow = classes.shahow;
-  let container = classes.container + " " + shahow + " " + btn_size;
+  let container = classes.container + " " + btn_size;
 
   let style = {
     backgroundColor: props.color,
