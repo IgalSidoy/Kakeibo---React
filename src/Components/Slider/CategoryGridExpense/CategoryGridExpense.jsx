@@ -17,9 +17,6 @@ export default (props) => {
   return (
     <div>
       <div className={classes.container}>
-        <div className={classes.title}>
-          <label>Categories</label>
-        </div>
         {category.map((line, key) => (
           <div key={key}>
             <GridLine

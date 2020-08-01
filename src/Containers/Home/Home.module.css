@@ -74,6 +74,12 @@
   position: absolute;
 }
 
+.row1,
+.row2,
+.row3 {
+  background-color: white;
+}
+
 @media only screen and (min-width: 1000px) {
   .row1 {
     display: flex;
@@ -243,7 +249,7 @@
   .container {
     overflow: hidden;
     overflow-y: scroll;
-
+    background-color: white;
     height: 55%;
   }
 }

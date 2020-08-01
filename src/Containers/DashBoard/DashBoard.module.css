@@ -1,3 +1,12 @@
+.header_container {
+  z-index: 50;
+}
+.row {
+  display: flex;
+}
+.col {
+  flex: 1;
+}
 .avatar img {
   width: 35px;
   height: 35px;

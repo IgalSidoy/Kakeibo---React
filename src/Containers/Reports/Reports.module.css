@@ -6,16 +6,7 @@
 .loader {
   margin-top: 10rem;
 }
-.title {
-  font-size: 1.5rem;
-  font-weight: 650;
-  padding: 1rem;
-  color: white;
-}
-.title label {
-  text-rendering: geometricPrecision;
-  font-variant: small-caps;
-}
+
 .shadow {
   box-shadow: 2px 4px 10px rgba(124, 123, 123, 0.664);
 }
@@ -26,12 +17,33 @@
   border-bottom: 1px solid rgba(207, 205, 205, 0.63);
 }
 .date_col {
-  flex-basis: 230px;
+  flex: 1;
   font-weight: 500;
   border-right: 1px solid rgba(255, 255, 255, 0.486);
   color: white;
   background-color: #053a4b;
-  font-size: 1.1rem;
+}
+.title_header {
+  height: inherit;
+  display: inline-block;
+  width: 300px;
+  font-size: 0.9rem;
+}
+.container_header {
+  background-color: #053a4b;
+  color: white;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-left: -1px;
+  margin-bottom: 10px;
+  z-index: 10;
+}
+.borderRight {
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
+}
+.title_border {
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
 }
 .title_col {
   flex: 1;
@@ -45,7 +57,7 @@
     display: flex;
   }
   .col {
-    margin-top: -1rem;
+    margin-top: -5px;
     flex: 1;
     overflow: hidden;
   }
@@ -58,7 +70,7 @@
   }
   .col {
     flex: 1;
-    margin-top: -1.5rem;
+    margin-top: -5px;
     margin-left: -0.5rem;
   }
   .container {

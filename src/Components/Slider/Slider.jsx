@@ -107,7 +107,7 @@ export default class Slider extends Component {
     if (window.innerWidth >= 850) {
       return;
     }
-    const sensetivity = 40;
+    const sensetivity = 35;
     if (type === "start") {
       /*
       :0,

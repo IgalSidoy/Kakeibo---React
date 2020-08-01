@@ -2,13 +2,13 @@
   /* background-color: #00779b; */
   width: 100%;
   display: flex;
-  margin-top: 1rem;
 }
 .footer {
   display: flex;
   background-color: #00779b;
   justify-content: center;
   padding: 1rem;
+  margin-top: 5px;
 }
 .col_btn {
   flex-basis: 20px;

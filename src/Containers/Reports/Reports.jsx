@@ -211,16 +211,13 @@ export default class Reports extends React.Component {
       );
     return (
       <div className={classes.container} style={container_style}>
-        <div className={classes.row}>
-          <div className={classes.date_col}>
+        <div className={classes.container_header}>
+          <div className={classes.title_header + " " + classes.borderRight}>
             <DatePicker
-              top={-500}
+              top={-10}
               bottom={-10}
               selectDateHandler={this.selectDateHandler}
             ></DatePicker>
-          </div>
-          <div className={classes.title_col}>
-            <div className={classes.title}></div>
           </div>
         </div>
 

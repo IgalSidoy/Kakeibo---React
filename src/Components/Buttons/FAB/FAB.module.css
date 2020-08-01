@@ -1,14 +1,16 @@
 .container {
-  position: fixed;
+  /* position: fixed; */
   display: block;
   border-radius: 50px;
   cursor: pointer;
   transition-duration: 0.3s;
   border-radius: 50px;
-  opacity: 0.4;
+  margin: auto;
+  margin-top: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.37);
 }
 .container:hover {
-  opacity: 1;
+  opacity: 0.7;
   transition-duration: 0.3s;
 }
 
@@ -17,40 +19,47 @@
   transition-duration: 0.3s;
 }
 
-.img {
-  transition-duration: 0.1s;
-}
-.img:active {
-  transform: rotate(135deg);
-}
 .small {
-  width: 40px;
+  width: 80px;
   height: 40px;
   border-radius: 50px;
+  cursor: pointer;
 }
-.small img {
-  margin-top: 20%;
-  border-radius: 50px;
+.small label {
+  display: block;
+  font-size: 17px;
+  cursor: pointer;
+}
+.small div {
+  margin-top: 7px;
+  cursor: pointer;
 }
 .medium {
-  width: 50px;
+  width: 100px;
   height: 50px;
   border-radius: 50px;
 }
-.medium img {
-  margin-top: 20%;
-  width: 30px;
-  border-radius: 50px;
+.medium label {
+  display: block;
+  font-size: 25px;
+  cursor: pointer;
 }
+.medium div {
+  margin-top: 5px;
+}
+
 .large {
-  width: 60px;
+  width: 120px;
   height: 60px;
   border-radius: 50px;
 }
-.large img {
-  margin-top: 20%;
-  width: 35px;
-  border-radius: 50px;
+.large label {
+  display: block;
+  font-size: 30px;
+  cursor: pointer;
+}
+.large div {
+  margin-top: 7px;
 }
 
 .shahow {
@@ -60,4 +69,8 @@
 .invert {
   filter: invert(100);
   border-radius: 50px;
+}
+.title {
+  color: white;
+  cursor: pointer;
 }

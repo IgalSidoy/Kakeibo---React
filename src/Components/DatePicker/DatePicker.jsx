@@ -27,12 +27,12 @@ export default class DatePicker extends React.Component {
     //calendarContainerHide
     let style = {};
     if (!this.state.show) {
-      calendarContainer += " " + classes.calendarContainerHide;
       style.transform = "translateY(" + this.props.bottom + "px)";
     } else {
-      calendarContainer += " " + classes.calendarContainerHide;
       style.transform = "translateY(" + this.props.top + "px)";
+      calendarContainer += " " + classes.hide;
     }
+
     return (
       <div className={classes.container}>
         <Row>
@@ -45,7 +45,7 @@ export default class DatePicker extends React.Component {
             </div>
           </Col>
 
-          <Col size={2}>
+          <Col size={3}>
             <div className={classes.title} onClick={this.showHideCalendar}>
               <Row>
                 <Col size={1}>
@@ -96,17 +96,19 @@ export default class DatePicker extends React.Component {
             </Col>
           </Row>
           <hr></hr>
-          <Row>
+
+          <div className={classes.row}>
             {this.state.firstQ.map((month, key) => (
-              <Col key={key} size={1} max={80}>
+              <div className={classes.col} key={key} size={1} max={80}>
                 <Month
                   title={month}
                   selected={this.state.selectedMonth}
                   onClick={this.onClickMonth}
                 ></Month>
-              </Col>
+              </div>
             ))}
-          </Row>
+          </div>
+
           <Row>
             {this.state.secondQ.map((month, key) => (
               <Col key={key} size={1} max={80}>
@@ -153,7 +155,6 @@ export default class DatePicker extends React.Component {
       show: !this.state.show,
     });
   };
-
   onChageYearHandler = (type) => {
     let old_year = this.state.year;
     if (type === "min") {

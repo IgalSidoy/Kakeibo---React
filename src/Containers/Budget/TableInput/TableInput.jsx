@@ -30,13 +30,25 @@ export default (props) => {
   );
   if (!addClicked) {
     add_icon = <img src={add} alt=""></img>;
-    add_icon = "";
+    add_icon = (
+      <FAB
+        title="add"
+        size="small"
+        color="#05394b"
+        onClick={async () => {
+          setAddClicked(true);
+          await props.onChange(props.title, "add", "", "");
+          setAddClicked(false);
+        }}
+      ></FAB>
+    );
   }
   return (
     <div className={classes.container}>
-      <div className={classes.title}>
+      {/* <div className={classes.title}>
         <label> {props.title}</label>
-      </div>
+      </div> */}
+
       <ul>
         {props.data.map((line, key) => (
           <li key={key}>
@@ -68,34 +80,8 @@ export default (props) => {
           </li>
         ))}
 
-        {/* <li>
-          <div
-            className={classes.add}
-            onClick={async () => {
-              setAddClicked(true);
-              await props.onChange(props.title, "add", "", "");
-              setAddClicked(false);
-            }}
-          >
-            {add_icon}
-          </div>
-        </li> */}
-        <br></br>
         {add_icon}
       </ul>
-
-      <FAB
-        size="medium"
-        left={FAB_left}
-        top={FAB_top}
-        invert
-        color="#05394b"
-        onClick={async () => {
-          setAddClicked(true);
-          await props.onChange(props.title, "add", "", "");
-          setAddClicked(false);
-        }}
-      ></FAB>
     </div>
   );
 };

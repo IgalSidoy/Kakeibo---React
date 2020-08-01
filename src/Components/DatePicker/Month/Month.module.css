@@ -8,6 +8,7 @@
   cursor: pointer;
   transition-duration: 0.25s;
   color: black;
+  position: relative;
 }
 .container:hover {
   background-color: rgba(177, 177, 177, 0.342);

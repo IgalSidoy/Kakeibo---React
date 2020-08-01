@@ -13,11 +13,10 @@ export default (props) => {
     btn_size = classes.large;
   }
   let shahow = classes.shahow;
-  let container = classes.container + " " + shahow;
+  let container = classes.container + " " + shahow + " " + btn_size;
 
   let style = {
     backgroundColor: props.color,
-    border: "1px solid white",
   };
 
   if (props.top !== undefined) {
@@ -31,10 +30,14 @@ export default (props) => {
   if (props.invert !== undefined) {
     icon_class = classes.invert;
   }
+  let title = "";
+  if (props.title !== undefined) {
+    title = props.title;
+  }
   return (
     <div className={container} style={style} onClick={props.onClick}>
-      <div className={btn_size + " " + classes.img}>
-        <img src={create} alt="+" className={icon_class}></img>
+      <div className={classes.title}>
+        <label>{title}</label>
       </div>
     </div>
   );

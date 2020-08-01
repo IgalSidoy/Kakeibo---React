@@ -178,21 +178,23 @@ export default class DashBoard extends React.Component {
     }
     return (
       <Router>
-        <Row>
-          <Col size={1} max={60}>
-            <div className={classes.border_right1}>
-              <MenuButton onClick={this.menuButton}></MenuButton>
-            </div>
-          </Col>
-          <Col size={2}>
-            <div className={classes.title}></div>
-          </Col>
-          <Col size={1} max={70}>
-            <Link to="/settings">
-              <div className={classes.avatar}>{avatar}</div>
-            </Link>
-          </Col>
-        </Row>
+        <div className={classes.header_container}>
+          <Row>
+            <Col size={1} max={60}>
+              <div className={classes.border_right1}>
+                <MenuButton onClick={this.menuButton}></MenuButton>
+              </div>
+            </Col>
+            <Col size={2}>
+              <div className={classes.title}></div>
+            </Col>
+            <Col size={1} max={70}>
+              <Link to="/settings">
+                <div className={classes.avatar}>{avatar}</div>
+              </Link>
+            </Col>
+          </Row>
+        </div>
         <div onClick={() => this.menuButton(false)}>
           <Row>
             <div style={menuStyle}>{sideMenu}</div>
