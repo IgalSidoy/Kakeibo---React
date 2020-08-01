@@ -33,7 +33,6 @@ export default class DashBoard extends React.Component {
       SETTINGS: "/api/settings",
     },
     showMenu: false,
-    show_avatar_menu: false,
     user: {
       token: "",
       avatar: "",
@@ -109,7 +108,6 @@ export default class DashBoard extends React.Component {
     this.setState({
       user,
     });
-    console.log("logout");
   };
   async user_loging_validate_handler() {
     let token = localStorage.getItem("token");
@@ -166,39 +164,15 @@ export default class DashBoard extends React.Component {
     let avatar = <img src={this.state.user.avatar} alt=""></img>;
     let avatar_style = {};
 
-    if (!this.state.show_avatar_menu) avatar_style.display = "none";
     if (this.state.user.last_name && this.state.user.first_name) {
       avatar = (
         <div className={classes.avatar_name}>
-          <div
-            className={classes.avatar_container}
-            onMouseOver={() => {
-              this.setState({
-                show_avatar_menu: true,
-              });
-            }}
-            onMouseLeave={() => {
-              this.setState({
-                show_avatar_menu: false,
-              });
-            }}
-          >
+          <div className={classes.avatar_container}>
             <label>
               {this.state.user.first_name.substr(0, 1) +
                 this.state.user.last_name.substr(0, 1)}
             </label>
           </div>
-
-          <div className={classes.avatar_message} style={avatar_style}>
-            <label>
-              {" "}
-              Wellcome ,{" "}
-              {this.state.user.first_name + " " + this.state.user.last_name}
-            </label>
-
-            <label>email {this.state.user.email}</label>
-          </div>
-          <div className={classes.triangle} style={avatar_style}></div>
         </div>
       );
     }

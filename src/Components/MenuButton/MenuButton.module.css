@@ -1,32 +1,36 @@
 .lineContainer {
   flex-direction: column;
-  border-radius: 5px;
+  border-radius: 50px;
   cursor: pointer;
-  height: 35px;
+  height: 30px;
   width: 35px;
-  padding: 0.45rem;
-  padding-left: 0.5rem;
-  transition-duration: 0.25s;
-  padding-bottom: 1rem;
-  padding-top: 0rem;
-  margin-left: 4px;
-  margin-bottom: 3px;
-  margin-top: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.452);
+  transition-duration: 0.4s;
+
+  margin: 5px;
+  padding-top: 13px;
+  padding-bottom: -5px;
+  padding-left: 10px;
+  margin-top: 9px;
+  margin-bottom: 8px;
 }
+
 .line {
-  border-top: 2.5px solid rgba(240, 237, 237, 0.979);
+  border-top: 2px solid rgba(240, 237, 237, 0.979);
   height: 1px;
-  width: 35px;
-  margin-top: 10px;
-  border-radius: 10px;
+  width: 15px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: 5px;
 }
 .lineContainer:hover {
-  background-color: #036380cc;
+  transition-duration: 0.45s;
+  background-color: #075f7a5b;
 }
 .lineContainer:active {
-  background-color: #1784a5;
+  transition-duration: 0.25s;
+  background-color: #09475a88;
 }
+
 .row {
   display: flex;
   background-color: #00779b;

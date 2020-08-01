@@ -565,7 +565,11 @@ export default class extends Component {
           </div>
         </div>
         <div className={classes.row}>
-          <div className={classes.col + " " + classes.border}>
+          <div
+            className={
+              classes.col + " " + classes.border + " " + classes.sub_container
+            }
+          >
             <div className={classes.row + " " + classes.cell_title}>
               <div className={classes.col}>
                 <label>Personal Details</label>
@@ -694,104 +698,107 @@ export default class extends Component {
           </div>
 
           <div className={classes.col + " " + classes.border}>
-            <div className={classes.row + " " + classes.cell_title}>
-              <div className={classes.col}>
-                <label>Categories Setup</label>
+            <div className={classes.sub_container}>
+              <div className={classes.row + " " + classes.cell_title}>
+                <div className={classes.col}>
+                  <label>Categories Setup</label>
+                </div>
               </div>
-            </div>
-            <div className={classes.row}>
-              <div className={classes.col}>
-                <InputSelect
-                  value={this.state.category}
-                  isSelect={true}
-                  label={"category"}
-                  dataSet={this.state.categories}
-                  onChange={(e) => {
-                    this.onChange("category", e.target.value);
-                  }}
-                ></InputSelect>
-              </div>
-              <div
-                className={classes.remove_img}
-                onClick={() => {
-                  this.deleteCategoryHandler();
-                }}
-              >
-                {delete_category_btn}
-              </div>
-            </div>
-            <div className={classes.row}>
-              <div className={classes.col}>
-                <InputSelect
-                  helperText={this.state.new_category_error_msg}
-                  error={this.state.new_category_error}
-                  value={this.state.new_category}
-                  isSelect={false}
-                  label={"new category"}
-                  onChange={(e) => {
-                    this.onChange("new_category", e.target.value);
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.keyCode === 13) {
-                      this.addNewCategoryHandler();
-                    }
-                  }}
-                ></InputSelect>
-              </div>
-            </div>
-            <div className={classes.row}>
-              <div className={classes.col + " " + classes.error}>
-                {this.state.add_category_error}
-              </div>
-            </div>
-            <div className={classes.row}>
-              <div className={classes.col}>
+              <div className={classes.row}>
+                <div className={classes.col}>
+                  <InputSelect
+                    value={this.state.category}
+                    isSelect={true}
+                    label={"category"}
+                    dataSet={this.state.categories}
+                    onChange={(e) => {
+                      this.onChange("category", e.target.value);
+                    }}
+                  ></InputSelect>
+                </div>
                 <div
-                  className={classes.button}
-                  onClick={() => this.addNewCategoryHandler()}
+                  className={classes.remove_img}
+                  onClick={() => {
+                    this.deleteCategoryHandler();
+                  }}
                 >
-                  {add_category_btn}
+                  {delete_category_btn}
+                </div>
+              </div>
+              <div className={classes.row}>
+                <div className={classes.col}>
+                  <InputSelect
+                    helperText={this.state.new_category_error_msg}
+                    error={this.state.new_category_error}
+                    value={this.state.new_category}
+                    isSelect={false}
+                    label={"new category"}
+                    onChange={(e) => {
+                      this.onChange("new_category", e.target.value);
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.keyCode === 13) {
+                        this.addNewCategoryHandler();
+                      }
+                    }}
+                  ></InputSelect>
+                </div>
+              </div>
+              <div className={classes.row}>
+                <div className={classes.col + " " + classes.error}>
+                  {this.state.add_category_error}
+                </div>
+              </div>
+              <div className={classes.row}>
+                <div className={classes.col}>
+                  <div
+                    className={classes.button}
+                    onClick={() => this.addNewCategoryHandler()}
+                  >
+                    {add_category_btn}
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div className={classes.row + " " + classes.cell_title}>
-              <div className={classes.col}>
-                <label>General Settings</label>
+            <div className={classes.sub_container}>
+              <div className={classes.row + " " + classes.cell_title}>
+                <div className={classes.col}>
+                  <label>General Settings</label>
+                </div>
               </div>
-            </div>
-            <div className={classes.row}>
-              <div className={classes.col}>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      inputProps={{ "aria-label": "secondary checkbox" }}
-                      checked={this.props.user.remove_enabled}
-                      onChange={(e) =>
-                        this.update_remove_enabled(e.target.checked)
-                      }
-                      name="checkedB"
-                      color="primary"
-                    />
-                  }
-                  label="Remove Enabled"
-                />
+              <div className={classes.row}>
+                <div className={classes.left}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        inputProps={{ "aria-label": "secondary checkbox" }}
+                        checked={this.props.user.remove_enabled}
+                        onChange={(e) =>
+                          this.update_remove_enabled(e.target.checked)
+                        }
+                        name="checkedB"
+                        color="primary"
+                      />
+                    }
+                    label="Remove Enabled"
+                  />
+                </div>
               </div>
-            </div>
-            <div className={classes.row}>
-              <div className={classes.col}>
-                <InputSelect
-                  OnBlurHandler={(e) => {
-                    this.updateSettnigs({ currency: e.target.value });
-                  }}
-                  value={this.state.settings.currency}
-                  isSelect={true}
-                  label={"currency"}
-                  dataSet={this.state.settings.currencies}
-                  onChange={(e) => {
-                    this.onChange("currency", e.target.value);
-                  }}
-                ></InputSelect>
+              <div className={classes.row}>
+                <div className={classes.col}>
+                  <InputSelect
+                    OnBlurHandler={(e) => {
+                      this.updateSettnigs({ currency: e.target.value });
+                    }}
+                    value={this.state.settings.currency}
+                    isSelect={true}
+                    label={"currency"}
+                    dataSet={this.state.settings.currencies}
+                    onChange={(e) => {
+                      this.onChange("currency", e.target.value);
+                    }}
+                  ></InputSelect>
+                </div>
               </div>
             </div>
           </div>

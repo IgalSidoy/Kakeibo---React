@@ -7,7 +7,7 @@ export default (props) => {
   menuStyle.color = "white";
   const [show, setShow] = useState(true);
   const [linkSelected, setLinkSelected] = useState("expenses");
-  let back_button = classes.col_back;
+
   if (window.innerWidth >= 850) {
     if (show) {
       menuStyle.transform = "translateX(0px)";
@@ -23,7 +23,6 @@ export default (props) => {
       menuStyle.position = "absolute";
       menuStyle.zIndex = 1;
       menuStyle.color = "transparent";
-      back_button += " " + classes.left;
     }
   }
 
@@ -37,18 +36,23 @@ export default (props) => {
     fixed_expenses_class += " " + classes.selected;
   if (linkSelected === "expenses") expenses_class += " " + classes.selected;
 
+  let col_back_st = classes.col_back;
+  if (!show) {
+    col_back_st += " " + classes.back_btn_rotate + " " + classes.back_btn_right;
+  }
+  //
   return (
     <div className={classes.container} style={menuStyle}>
       <div className={classes.cell3} onClick={() => setShow(!show)}>
         <MenuBox title="" small>
           <div className={classes.row_back}>
-            <div className={classes.col_back}>
+            <div className={col_back_st}>
               <img src={tray} alt=""></img>
             </div>
-            <div className={classes.col_back}>
+            <div className={col_back_st}>
               <img src={tray} alt=""></img>
             </div>
-            <div className={back_button}>
+            <div className={col_back_st}>
               <img src={tray} alt=""></img>
             </div>
           </div>

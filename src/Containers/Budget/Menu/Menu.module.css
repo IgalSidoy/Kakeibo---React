@@ -76,13 +76,17 @@
   }
   .col_back {
     flex: 1;
+
     transition-duration: 0.3s;
+  }
+  .back_btn_rotate {
+    transform: rotate(180deg);
   }
   .col_back img {
     margin-top: 4px;
   }
-  .left {
-    padding-left: 115px;
+  .back_btn_right {
+    padding-right: 15px;
   }
   .income_color {
     margin: 0.5rem;

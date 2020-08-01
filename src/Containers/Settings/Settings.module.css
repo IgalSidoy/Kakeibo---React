@@ -17,7 +17,7 @@
   }
   .cell_title {
     font-size: 1.5rem;
-    border-bottom: 1px solid rgb(117, 117, 117);
+    border-bottom: 1.5px solid rgb(117, 117, 117);
     margin-bottom: 1rem;
     padding-top: 0.5rem;
     box-shadow: 0px 2px 6px rgba(128, 128, 128, 0.589);
@@ -71,7 +71,7 @@
   }
   .cell_title {
     font-size: 1.5rem;
-    border-bottom: 1px solid rgb(117, 117, 117);
+    border-bottom: 1.5px solid rgb(117, 117, 117);
     margin-bottom: 1rem;
     padding-top: 0.5rem;
     box-shadow: 0px 2px 6px rgba(128, 128, 128, 0.589);
@@ -118,7 +118,7 @@
   }
   .cell_title {
     font-size: 1.5rem;
-    border-bottom: 1px solid rgb(117, 117, 117);
+    border-bottom: 1.5px solid rgb(117, 117, 117);
     margin-bottom: 0.5rem;
     padding-bottom: 0.5rem;
     padding-top: 0.25rem;
@@ -221,4 +221,14 @@
   height: 50px;
   margin-top: -25px;
   margin-bottom: 5px;
+}
+.sub_container {
+  border: 2px solid rgba(71, 71, 71, 0.425);
+  box-shadow: 0 3px 10px rgb(114, 113, 113);
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.left {
+  flex-basis: 200px;
 }
