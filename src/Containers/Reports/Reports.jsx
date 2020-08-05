@@ -274,28 +274,35 @@ export default class Reports extends React.Component {
 
     let key = "missing category";
     for (let i in expenses) {
+      let type = expenses[i].type;
       if (expenses[i].type === "const_expense") continue;
       if (expenses[i].category === "") {
         if (temp_category[key] === undefined) temp_category[key] = 0;
-        temp_category[key] += +expenses[i].sum;
+        temp_category[key] -= +expenses[i].sum;
       } else {
         if (temp_category[expenses[i].category] === undefined)
           temp_category[expenses[i].category] = 0;
-        temp_category[expenses[i].category] += +expenses[i].sum;
+
+        if (type === "income")
+          temp_category[expenses[i].category] += +expenses[i].sum;
+        else temp_category[expenses[i].category] -= +expenses[i].sum;
       }
       if (expenses[i].type === "income") totals_series[0] += +expenses[i].sum;
       else totals_series[1] += +expenses[i].sum;
       //
     }
-    // console.log(temp_category);
     for (let i in const_expenses) {
+      let type = const_expenses[i].type;
       if (const_expenses[i].category === "") {
         if (temp_category[key] === undefined) temp_category[key] = 0;
-        temp_category[key] += +const_expenses[i].sum;
+        temp_category[key] -= +const_expenses[i].sum;
       } else {
         if (temp_category[const_expenses[i].category] === undefined)
           temp_category[const_expenses[i].category] = 0;
-        temp_category[const_expenses[i].category] += const_expenses[i].sum;
+
+        if (type === "income")
+          temp_category[const_expenses[i].category] += const_expenses[i].sum;
+        else temp_category[const_expenses[i].category] -= const_expenses[i].sum;
       }
       if (const_expenses[i].type === "income")
         totals_series[0] += +const_expenses[i].sum;
@@ -334,26 +341,45 @@ export default class Reports extends React.Component {
       exp_list_by_category[category].push(expenses[i]);
       _exp_id_list[expenses[i]._id] = "";
     }
+
     temp_category = this.sort(temp_category);
     let category = [];
     let pieChart = JSON.parse(JSON.stringify(this.state.pieChart));
     let labels = [];
     let series = [];
 
-    // console.log(this.state.pieChart.series);
     let radialBar = JSON.parse(JSON.stringify(this.state.radialBar));
-    // console.log(this.state.barChart);
 
     for (let i in temp_category) {
-      // console.log(exp_list_by_category[temp_category[i]]);
       labels.push(temp_category[i]);
       series.push(+i);
       category.push({
         title: temp_category[i],
         total: i,
         exp_list: exp_list_by_category[temp_category[i]],
+        type: exp_list_by_category[temp_category[i]].type,
       });
     }
+
+    // console.log(temp_category);
+    // let visited = [];
+    // for (let i in temp_category) {
+    //   visited[i] = false;
+    // }
+    // for (let i in temp_category) {
+    //   if (visited[i]) {
+    //     continue;
+    //   }
+    //   let max = i;
+    //   for (let j in temp_category) {
+    //     if (visited[j]) {
+    //       continue;
+    //     }
+    //     if (max < j) max = j;
+    //   }
+    //   visited[max] = true;
+    //   console.log("max:", max);
+    // }
 
     pieChart.options.labels = labels;
     pieChart.series = series;

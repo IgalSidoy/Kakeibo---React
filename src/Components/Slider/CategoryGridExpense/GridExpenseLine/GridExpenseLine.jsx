@@ -66,7 +66,7 @@ export default (props) => {
             value={props.symbol + new Number(props.exp.total).toLocaleString()}
             InputProps={{
               style: {
-                color: props.color,
+                color: props.exp.total < 0 ? "red" : "green",
                 fontSize: props.fontSize,
               },
             }}
@@ -115,10 +115,14 @@ export default (props) => {
               type={"text"}
               disabled={true}
               // eslint-disable-next-line no-new-wrappers
-              value={props.symbol + new Number(exp.sum).toLocaleString()}
+              value={
+                exp.type === "income"
+                  ? props.symbol + new Number(exp.sum).toLocaleString()
+                  : "-" + props.symbol + new Number(exp.sum).toLocaleString()
+              }
               InputProps={{
                 style: {
-                  color: props.color,
+                  color: exp.type === "income" ? "green" : "red",
                   fontSize: props.fontSize,
                 },
               }}
