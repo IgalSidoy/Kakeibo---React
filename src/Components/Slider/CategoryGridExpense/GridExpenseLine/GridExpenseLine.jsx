@@ -18,8 +18,7 @@ export default (props) => {
 
   let col = classes.col;
   if (showExtra) col = classes.col + " " + classes.active;
-  let color_line = "black";
-  if (showExtra) color_line = "white";
+
   return (
     <React.Fragment>
       <div className={classes.row}>
@@ -117,8 +116,10 @@ export default (props) => {
               // eslint-disable-next-line no-new-wrappers
               value={
                 exp.type === "income"
-                  ? props.symbol + new Number(exp.sum).toLocaleString()
-                  : "-" + props.symbol + new Number(exp.sum).toLocaleString()
+                  ? // eslint-disable-next-line no-new-wrappers
+                    props.symbol + new Number(exp.sum).toLocaleString()
+                  : // eslint-disable-next-line no-new-wrappers
+                    "-" + props.symbol + new Number(exp.sum).toLocaleString()
               }
               InputProps={{
                 style: {
