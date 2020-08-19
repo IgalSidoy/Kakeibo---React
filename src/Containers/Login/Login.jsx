@@ -212,6 +212,7 @@ export default class Login extends Component {
       }
       return;
     } catch (error) {
+      // eslint-disable-next-line no-ex-assign
       error = "*email or password incorrect. please try again";
       this.setState({ password: "", error, signing_in: false });
     }

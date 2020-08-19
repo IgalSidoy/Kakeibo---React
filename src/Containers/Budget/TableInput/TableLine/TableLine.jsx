@@ -13,11 +13,6 @@ export default (props) => {
 
   const [expand, setExpand] = useState(false);
 
-  let autoFocus = false;
-  if (props.screeWidth >= 850) {
-    autoFocus = true;
-  }
-
   const onTouch = (type, e) => {
     if (props.screeWidth >= 850) {
       return;
@@ -58,11 +53,6 @@ export default (props) => {
       delete_button = classes.col + " " + classes.delete_buton_hide_tablet;
     }
   }
-
-  let categories = [
-    { value: "cat-1", label: "1" },
-    { value: "cat-2", label: "2" },
-  ];
 
   let payments = (
     <div

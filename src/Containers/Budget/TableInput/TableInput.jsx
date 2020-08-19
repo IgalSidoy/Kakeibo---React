@@ -8,21 +8,6 @@ import FAB from "../../../Components/Buttons/FAB/FAB";
 export default (props) => {
   const [addClicked, setAddClicked] = useState(false);
 
-  let FAB_left = "";
-  let FAB_top = "";
-  // if (props.screeWidth <= 1200) {
-  //   FAB_left = "0%";
-  //   FAB_top = "90%";
-  // }
-  if (props.screeWidth >= 850) {
-    FAB_left = "2%";
-    FAB_top = "92%";
-  }
-  if (props.screeWidth <= 850) {
-    FAB_left = "2%";
-    FAB_top = "82%";
-  }
-
   let add_icon = (
     <div className={classes.loader}>
       <Loader></Loader>

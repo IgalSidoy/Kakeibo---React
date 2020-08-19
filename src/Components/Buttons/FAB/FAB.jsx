@@ -1,6 +1,5 @@
 import React from "react";
 import classes from "./FAB.module.css";
-import create from "../../../img/add-24px.svg";
 export default (props) => {
   let btn_size = "";
   if (props.size === "small") {
@@ -24,10 +23,6 @@ export default (props) => {
 
   if (props.left !== undefined) {
     style.left = props.left;
-  }
-  let icon_class = classes.invert;
-  if (props.invert !== undefined) {
-    icon_class = classes.invert;
   }
   let title = "";
   if (props.title !== undefined) {

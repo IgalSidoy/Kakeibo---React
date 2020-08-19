@@ -99,7 +99,6 @@ export default (props) => {
         localStorage.setItem("introduction", json.user.introduction);
         //setRegisterClick(false);
         window.location = "/";
-        // setRedirect(true);
       }
       if (response.status === 400) {
         setError("*" + json.error);

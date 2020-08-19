@@ -69,6 +69,19 @@ export default class DashBoard extends React.Component {
 
   componentDidMount = async () => {
     await this.user_loging_validate_handler();
+    let elem = document.getElementsByClassName("dashboard-home");
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+      /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) {
+      /* Chrome, Safari & Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) {
+      /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
   };
 
   logout = async () => {
@@ -162,7 +175,6 @@ export default class DashBoard extends React.Component {
     }
 
     let avatar = <img src={this.state.user.avatar} alt=""></img>;
-    let avatar_style = {};
 
     if (this.state.user.last_name && this.state.user.first_name) {
       avatar = (
@@ -177,80 +189,84 @@ export default class DashBoard extends React.Component {
       );
     }
     return (
-      <Router>
-        <div className={classes.header_container}>
-          <Row>
-            <Col size={1} max={60}>
-              <div className={classes.border_right1}>
-                <MenuButton onClick={this.menuButton}></MenuButton>
-              </div>
-            </Col>
-            <Col size={2}>
-              <div className={classes.title}></div>
-            </Col>
-            <Col size={1} max={70}>
-              <Link to="/settings">
-                <div className={classes.avatar}>{avatar}</div>
-              </Link>
-            </Col>
-          </Row>
-        </div>
-        <div onClick={() => this.menuButton(false)}>
-          <Row>
-            <div style={menuStyle}>{sideMenu}</div>
-            <Col size={5}>
-              <Route path="/login">
-                <Login
-                  baseUrl={this.state.baseUrl}
-                  loginValidate={this.user_loging_validate_handler}
-                  user={this.state.user}
-                ></Login>
-              </Route>
-              <Route path="/register">
-                <Register
-                  register_url={this.state.apiRouts.REGISTER}
-                  baseUrl={this.state.baseUrl}
-                ></Register>
-              </Route>
-              <this.PrivateRoute path="/budget">
-                <Budget
-                  apiRouts={this.state.apiRouts}
-                  baseUrl={this.state.baseUrl}
-                  user={this.state.user}
-                ></Budget>
-              </this.PrivateRoute>
+      <div className="dashboard-home">
+        <Router>
+          <div className={classes.header_container}>
+            <Row>
+              <Col size={1} max={60}>
+                <div className={classes.border_right1}>
+                  <MenuButton onClick={this.menuButton}></MenuButton>
+                </div>
+              </Col>
+              <Col size={2}>
+                <div className={classes.title}></div>
+              </Col>
+              <Col size={1} max={70}>
+                <Link to="/settings">
+                  <div className={classes.avatar}>{avatar}</div>
+                </Link>
+              </Col>
+            </Row>
+          </div>
+          <div onClick={() => this.menuButton(false)}>
+            <Row>
+              <div style={menuStyle}>{sideMenu}</div>
+              <Col size={5}>
+                <Route path="/login">
+                  <Login
+                    baseUrl={this.state.baseUrl}
+                    loginValidate={this.user_loging_validate_handler}
+                    user={this.state.user}
+                  ></Login>
+                </Route>
+                <Route path="/register">
+                  <Register
+                    register_url={this.state.apiRouts.REGISTER}
+                    baseUrl={this.state.baseUrl}
+                  ></Register>
+                </Route>
+                <this.PrivateRoute path="/budget">
+                  <Budget
+                    apiRouts={this.state.apiRouts}
+                    baseUrl={this.state.baseUrl}
+                    user={this.state.user}
+                  ></Budget>
+                </this.PrivateRoute>
 
-              <this.PrivateRoute path="/settings">
-                <Settings
-                  get_profile={this.state.apiRouts.GET_PROFILE}
-                  apiRouts={this.state.apiRouts}
-                  update_profile_url={this.state.apiRouts.REGISTER}
-                  baseUrl={this.state.baseUrl}
-                  user={this.state.user}
-                  update_remove_enabled={this.update_remove_enabled}
-                ></Settings>
-              </this.PrivateRoute>
+                <this.PrivateRoute path="/settings">
+                  <Settings
+                    get_profile={this.state.apiRouts.GET_PROFILE}
+                    apiRouts={this.state.apiRouts}
+                    update_profile_url={this.state.apiRouts.REGISTER}
+                    baseUrl={this.state.baseUrl}
+                    user={this.state.user}
+                    update_remove_enabled={this.update_remove_enabled}
+                  ></Settings>
+                </this.PrivateRoute>
 
-              <this.PrivateRoute path="/reports">
-                <Reports
-                  user={this.state.user}
-                  get_expenses={this.state.apiRouts.CREATE_NEW_REC}
-                  baseUrl={this.state.baseUrl}
-                  apiRouts={this.state.apiRouts}
-                ></Reports>
-              </this.PrivateRoute>
+                <this.PrivateRoute path="/reports">
+                  <Reports
+                    user={this.state.user}
+                    get_expenses={this.state.apiRouts.CREATE_NEW_REC}
+                    baseUrl={this.state.baseUrl}
+                    apiRouts={this.state.apiRouts}
+                  ></Reports>
+                </this.PrivateRoute>
 
-              <Route exact path="/home">
-                <Home loginValidate={this.user_loging_validate_handler}></Home>
-              </Route>
-              <Route exact path="/">
-                <Home></Home>
-              </Route>
-              {/* <Redirect from="/" to="/home" /> */}
-            </Col>
-          </Row>
-        </div>
-      </Router>
+                <Route exact path="/home">
+                  <Home
+                    loginValidate={this.user_loging_validate_handler}
+                  ></Home>
+                </Route>
+                <Route exact path="/">
+                  <Home></Home>
+                </Route>
+                {/* <Redirect from="/" to="/home" /> */}
+              </Col>
+            </Row>
+          </div>
+        </Router>
+      </div>
     );
   }
   menuButton = (isOn) => {
