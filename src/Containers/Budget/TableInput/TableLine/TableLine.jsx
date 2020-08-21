@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "../TableInput.module.css";
-import Button from "@material-ui/core/button";
+import Button from "@material-ui/core/Button";
 import ButtonSelect from "../../../../Components/InputSelect/InputSelect";
 import arrow_right from "../../../../img/arrow_right-24px.svg";
 import arrow_down from "../../../../img/arrow_drop_down-24px.svg";
