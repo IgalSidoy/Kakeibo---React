@@ -116,21 +116,7 @@ export default class extends Component {
       });
     }
   }
-  async getAllCountries() {
-    const url = "https://restcountries.eu/rest/v2/all";
-    const res = await fetch(url);
-    const res_json = await res.json();
-    let countries = [];
-    for (let index in res_json) {
-      countries.push({
-        value: res_json[index].name,
-        label: res_json[index].name,
-      });
-    }
-    this.setState({
-      countries,
-    });
-  }
+
   async getAllCategories() {
     const updateURL = this.props.baseUrl + this.props.apiRouts.CATEGORIES;
     try {
@@ -243,7 +229,6 @@ export default class extends Component {
     }
   }
   async componentDidMount() {
-    await this.getAllCountries();
     await this.getAllCategories();
     await this.getSettnigs();
     await this.loadUserProfile();
@@ -634,29 +619,6 @@ export default class extends Component {
                   onChange={(e) => this.onChange("gender", e.target.value)}
                 >
                   {this.state.genderList.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              </div>
-            </div>
-            <div className={classes.row}>
-              <div className={classes.col}>
-                <TextField
-                  id="counteries"
-                  select
-                  size="small"
-                  type="text"
-                  label="Countery"
-                  variant="outlined"
-                  fullWidth={true}
-                  value={this.state.user.countery}
-                  onChange={(e) => {
-                    this.onChange("countery", e.target.value);
-                  }}
-                >
-                  {this.state.countries.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
                     </MenuItem>
